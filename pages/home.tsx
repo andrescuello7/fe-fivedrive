@@ -1,5 +1,4 @@
 import Navbar from '../components/navbar/navbar';
-import Post from '../components/post/post';
 import styles from '../styles/home.module.css'
 import useInfo from '../hooks/useInfo';
 
