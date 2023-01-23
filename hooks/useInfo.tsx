@@ -1,15 +1,14 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { PageNames } from '../enums/page_enum';
-import { setItem, getItem } from "../utils/localStorage";
 import { sessionToken } from '../utils/session';
-import { ApiNames } from '../enums/api_enum';
-import { GetStaticProps } from 'next';
+import ApiNames from '../enums/api_enum';
 import Post from '../components/post/post';
 
 export default function useInfo() {
+    const apiNames = ApiNames();
+
     const [repos, setrepos] = useState([])
+    const [search, setsearch] = useState([])
 
     useEffect(() => {
         sessionToken();
@@ -18,14 +17,13 @@ export default function useInfo() {
 
     const getStaticProps = async () => {
         try {
-            const { data } = await axios.get(`${ApiNames.GITHUB_REPOS}`)
+            const { data } = await axios.get(`${apiNames.GITHUB_REPOS("andrescuello7")}`)
             setrepos(data)
-            console.log(data)
+            setsearch(data)
         } catch (error) {
             console.log(error)
         }
     }
-
 
     const mapPost = repos.map((item: any, i) => (
         <Post
@@ -36,7 +34,23 @@ export default function useInfo() {
             user={item.owner.login}
             label='Get running space of job for client and conection of api...'
         />))
+
+    const onSearch = (e: any) => {
+        let list_repos = [];
+        const { value } = e.target;
+        list_repos = repos;
+        const filtered: any = list_repos.filter((item: any) => {
+            let result = item.name.toLowerCase();
+            return result.indexOf(value) > -1;
+        });
+        filtered.name !== "" ? setsearch(filtered) : setsearch(repos);
+    }
+
+    const mapRepos = search.map((item: any, i) => <a key={i} href={item.clone_url}>{item.full_name}</a>)
+
     return {
-        mapPost
+        onSearch,
+        mapPost,
+        mapRepos
     }
 }

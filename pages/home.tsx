@@ -9,17 +9,24 @@ export default function Home() {
         <div className={styles.body_home}>
             <Navbar />
             <div className={styles.info_home}>
-                <div className={styles.repos_home}>
+                <div className={`${styles.repos_home} sticky-top`}>
                     <div>
                         <p>Repositories</p>
                         <button>+ New</button>
                     </div>
-                    <input type="text" placeholder='Fied a repository...' />
+                    <input
+                        type="text"
+                        onChange={_con.onSearch}
+                        placeholder='Fied a repository...'
+                    />
+                    <section className={styles.repos_list}>
+                        {_con.mapRepos}
+                    </section>
                 </div>
                 <div className={styles.posts_home}>
                     <p>Your <b>Feed</b></p>
                     <br />
-                    <section>
+                    <section className='pb-4'>
                         {_con.mapPost}
                     </section>
                 </div>

@@ -1,4 +1,5 @@
 .body_login {
+  overflow-y: hidden;
   background: var(--default-background);
   height: 100vh;
   width: 100%;
@@ -56,6 +57,7 @@
   align-items: center;
   font-family: var(--default-font);
 }
+
 .form button:hover {
   background-color: rgba(89, 84, 84, 0.445);
 }

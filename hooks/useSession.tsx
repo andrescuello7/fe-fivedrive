@@ -3,9 +3,11 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { PageNames } from '../enums/page_enum';
 import { setItem, getItem } from "../utils/localStorage";
-import { ApiNames } from '../enums/api_enum';
+import ApiNames from '../enums/api_enum';
 
 export default function useSession() {
+    const apiNames = ApiNames();
+
     const users = getItem('users') || [];
     const router = useRouter();
 
@@ -32,8 +34,8 @@ export default function useSession() {
             return false;
         })
         if (typeof window !== 'undefined' && result[0]) {
-            const user = await axios.get(`${ApiNames.GITHUB}${form.username}`)
-            const repos = await axios.get(`${ApiNames.GITHUB_REPOS}`)
+            const user = await axios.get(`${apiNames.GITHUB}${form.username}`)
+            const repos = await axios.get(`${apiNames.GITHUB_REPOS("andrescuello7")}`)
             setItem("user", user.data);
             setItem("repos", repos.data);
             setItem("token", "eykjerfldkmnbts");

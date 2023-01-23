@@ -1,9 +1,10 @@
 .body_home {
+  overflow-y: hidden;
   background: var(--default-background-L1);
-  min-height: 100%;
   width: 100%;
   font-family: cursive;
   color: white;
+  height: 100vh;
 }
 
 .info_home {
@@ -16,7 +17,7 @@
   background-color: black;
   border-radius: var(--border-radius-L1);
   width: 20%;
-  height: 90vh;
+  height: 80vh;
 }
 
 .repos_home div {
@@ -47,9 +48,42 @@
 }
 
 .posts_home {
-  overflow-y: auto;
+  overflow: scroll;
   width: 50%;
-  height: 90vh;
+  height: 85vh;
+}
+
+.posts_home::-webkit-scrollbar {
+  width: 5px;
+}
+
+.posts_home::-webkit-scrollbar-thumb {
+  background-color: var(--default-background-L1);
+}
+
+.repos_list {
+  font-size: 13px;
+  margin: 20px 0%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 57vh;
+}
+
+.repos_list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.repos_list::-webkit-scrollbar-thumb {
+  background-color: var(--default-background);
+}
+
+.repos_list a {
+  text-decoration: none;
+  padding-top: 5px;
+  padding-left: 20px;
 }
 
 .explore_home {
@@ -63,7 +97,7 @@
   }
 
   .posts_home {
-    background-color: black;
+    background-color: transparent;
     width: 90%;
     height: 90vh;
   }
