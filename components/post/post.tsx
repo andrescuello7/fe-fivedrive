@@ -8,11 +8,9 @@ export default function Post(item?: PostModel) {
         <div className={styles.body_post}>
             <div className={styles.label_post}>
                 <div>
-                    <Image
+                    <img
                         alt={""}
-                        width={100}
-                        height={100}
-                        src={item?.photo ?? ""}
+                        src={item?.photo ?? "https://avatars.githubusercontent.com/u/72234490?v=4"}
                         className="w-100 rounded-circle"
                     />
                 </div>

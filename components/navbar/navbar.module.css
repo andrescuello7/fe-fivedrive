@@ -19,17 +19,18 @@
 .logo_navbar {
   display: flex;
   justify-content: center;
-  width: 10%;
+  width: 5%;
 }
 
 .logo_navbar div {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
   border-radius: 50px;
-  background-color: rgb(217, 207, 207);
+  background-color: var(--default-background);
 }
 
 .items_navbar {
@@ -41,7 +42,7 @@
 .search_navbar {
   display: flex;
   justify-content: center;
-  width: 55%;
+  width: 50%;
 }
 
 .search_navbar input {
