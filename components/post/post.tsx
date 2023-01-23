@@ -10,7 +10,7 @@ export default function Post(item?: PostModel) {
                 <p>{item?.user ?? ""}</p>
             </div>
             <div className={styles.info_post}>
-                <h4>{item?.title ?? ""}/{item?.lenguage ?? ""}</h4>
+                <h4>{item?.title ?? ""}</h4>
                 <p>{item?.label ?? ""}</p>
                 <br />
                 <div>

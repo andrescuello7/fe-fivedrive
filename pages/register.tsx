@@ -15,10 +15,30 @@ export default function Register() {
                         <p>Welcome Sing Up!</p>
                     </div>
                     <div>
-                        <input name="fullname" type="text" placeholder='full name' onChange={_con.onChange} />
-                        <input name="username" type="text" placeholder='user name' onChange={_con.onChange} />
-                        <input name="email" type="email" placeholder='email' onChange={_con.onChange} />
-                        <input name="password" type="password" placeholder='password' onChange={_con.onChange} />
+                        <input
+                            name="fullname"
+                            type="text"
+                            placeholder='full name'
+                            onChange={_con.onChange}
+                            className={_con.valid ? 'border border-1 border-danger' : ""} />
+                        <input
+                            name="username"
+                            type="text"
+                            placeholder='user name'
+                            onChange={_con.onChange}
+                            className={_con.valid ? 'border border-1 border-danger' : ""} />
+                        <input
+                            name="email"
+                            type="email"
+                            placeholder='email'
+                            onChange={_con.onChange}
+                            className={_con.valid ? 'border border-1 border-danger' : ""} />
+                        <input
+                            name="password"
+                            type="password"
+                            placeholder='password'
+                            onChange={_con.onChange}
+                            className={_con.valid ? 'border border-1 border-danger' : ""} />
                     </div>
                     <button onClick={_con.SingUp}>Sing In</button>
                 </div>

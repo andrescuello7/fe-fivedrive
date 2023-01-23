@@ -3,7 +3,7 @@ import styles from './navbar.module.css'
 import Link from "next/link";
 import { getItem } from "../../utils/localStorage";
 import { sessionFinished } from "../../utils/session";
-import { PageNames } from "../../router/page_enum";
+import { PageNames } from "../../enums/page_enum";
 
 export default function Navbar() {
     const [navbar, setNavbar] = useState(styles.dnone);
@@ -11,7 +11,7 @@ export default function Navbar() {
         <div>
             <div className={styles.body_navbar}>
                 <div className={styles.logo_navbar}>
-                    <div>🌀</div>
+                    <div><img src="https://cdn-icons-png.flaticon.com/512/6528/6528597.png" className="w-100 rounded-circle p-2"/></div>
                 </div>
                 <div className={styles.items_navbar}>
                     <div>
@@ -29,24 +29,24 @@ export default function Navbar() {
                 </div>
                 {getItem("token") != undefined ?
                     <div className={styles.logo_navbar}>
-                        <div className='d-flex' onClick={sessionFinished}>
-                            <Link href="/login">
-                                🤦‍♂️
-                            </Link>
-                        </div>
+                        <Link href={`${PageNames.LOGIN}`}>
+                            <div className='d-flex' onClick={sessionFinished}>
+                                <img src="https://avatars.githubusercontent.com/u/72234490?v=4" className="w-100 rounded-circle"/>
+                            </div>
+                        </Link>
                     </div>
                     :
                     <div>
-                        <button>
-                            <Link href={`${PageNames.LOGIN}`}>
+                        <Link href={`${PageNames.LOGIN}`}>
+                            <button>
                                 Sing In
-                            </Link>
-                        </button>
-                        <button>
-                            <Link href={`${PageNames.REGISTER}`}>
+                            </button>
+                        </Link>
+                        <Link href={`${PageNames.REGISTER}`}>
+                            <button>
                                 Sing Up
-                            </Link>
-                        </button>
+                            </button>
+                        </Link>
                     </div>
                 }
             </div>

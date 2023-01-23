@@ -1,13 +1,10 @@
 import Navbar from '../components/navbar/navbar';
 import Post from '../components/post/post';
 import styles from '../styles/home.module.css'
-import { sessionToken } from "../utils/session";
-import { useEffect } from "react";
+import useInfo from '../hooks/useInfo';
 
 export default function Home() {
-    useEffect(() => {
-        sessionToken();
-    }, [])
+    const _con = useInfo();
     return (
         <div className={styles.body_home}>
             <Navbar />
@@ -23,20 +20,7 @@ export default function Home() {
                     <p>Your <b>Feed</b></p>
                     <br />
                     <section>
-                        <Post
-                            lenguage='typescript'
-                            photo='🤦‍♂️'
-                            title='api-server'
-                            user='andrescuello7'
-                            label='Get running space of job for client and conection of api...'
-                        />
-                        <Post
-                            lenguage='typescript'
-                            photo='🤦‍♂️'
-                            title='api-server'
-                            user='andrescuello7'
-                            label='Get running space of job for client and conection of api...'
-                        />
+                        {_con.mapPost}
                     </section>
                 </div>
                 <div className={styles.explore_home}>

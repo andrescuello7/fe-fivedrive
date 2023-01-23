@@ -1,6 +1,6 @@
 .body_home {
   background: var(--default-background-L1);
-  height: 100vh;
+  min-height: 100%;
   width: 100%;
   font-family: cursive;
   color: white;
@@ -16,7 +16,7 @@
   background-color: black;
   border-radius: var(--border-radius-L1);
   width: 20%;
-  height: 82vh;
+  height: 90vh;
 }
 
 .repos_home div {
@@ -47,7 +47,7 @@
 }
 
 .posts_home {
-  /* overflow-y: auto; */
+  overflow-y: auto;
   width: 50%;
   height: 90vh;
 }

@@ -1,4 +1,4 @@
-import { PageNames } from "../router/page_enum";
+import { PageNames } from "../enums/page_enum";
 import { getItem, rmItem } from "./localStorage";
 
 

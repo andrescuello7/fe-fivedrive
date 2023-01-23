@@ -14,15 +14,17 @@ export default function Login() {
                     </div>
                     <div>
                         <input
-                            name="email"
+                            name="username"
                             type="text"
-                            placeholder='email'
+                            placeholder='username'
+                            className={_con.valid ? 'border border-1 border-danger' : ""}
                             onChange={_con.onChange}
                         />
                         <input
                             name="password"
                             type="password"
                             placeholder='password'
+                            className={_con.valid ? 'border border-1 border-danger' : ""}
                             onChange={_con.onChange}
                         />
                     </div>
