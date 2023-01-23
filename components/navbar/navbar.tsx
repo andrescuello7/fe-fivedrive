@@ -5,15 +5,25 @@ import { getItem } from "../../utils/localStorage";
 import { sessionFinished } from "../../utils/session";
 import { PageNames } from "../../enums/page_enum";
 import useInfo from "../../hooks/useInfo";
+import Image from 'next/image'
+import Icon from '../../assets/icon.png'
 
 export default function Navbar() {
     const [navbar, setNavbar] = useState(styles.dnone);
-
+    let user = getItem('user') ?? "";
     return (
         <div className="bg-dark">
             <div className={styles.body_navbar}>
                 <div className={styles.logo_navbar}>
-                    <div><img src="https://cdn-icons-png.flaticon.com/512/6528/6528597.png" className="w-100 rounded-circle p-2" /></div>
+                    <div>
+                        <Image
+                            alt={""}
+                            width={100}
+                            height={100}
+                            src="https://cdn-icons-png.flaticon.com/512/6528/6528597.png"
+                            className="w-100 rounded-circle p-2"
+                        />
+                    </div>
                 </div>
                 {getItem("token") != undefined ?
                     <div className={styles.items_navbar}>
@@ -35,7 +45,6 @@ export default function Navbar() {
                         <input
                             type="text"
                             placeholder='Search or jump to'
-                        // onChange={_con.onSearch}
                         />
                     </div>
                     :
@@ -45,7 +54,13 @@ export default function Navbar() {
                     <div className={styles.logo_navbar}>
                         <Link href={`${PageNames.LOGIN}`}>
                             <div className='d-flex' onClick={sessionFinished}>
-                                <img src="https://avatars.githubusercontent.com/u/72234490?v=4" className="w-100 rounded-circle" />
+                                <Image
+                                    alt={""}
+                                    width={100}
+                                    height={100}
+                                    src={user.avatar_url}
+                                    className="w-100 rounded-circle"
+                                />
                             </div>
                         </Link>
                     </div>
@@ -68,9 +83,13 @@ export default function Navbar() {
                 <div onClick={() => setNavbar(navbar == styles.dnone ? styles.dblock : styles.dnone)} className={styles.logo_navbar}>
                     <div className={styles.logo_navbar}>
                         <div>
-                            <img
-                                src="https://cdn-icons-png.flaticon.com/512/6528/6528597.png"
-                                className="w-100 rounded-circle p-2" />
+                            <Image
+                                alt={""}
+                                width={100}
+                                height={100}
+                                src={user.avatar_url}
+                                className="w-100 rounded-circle p-2"
+                            />
                         </div>
                     </div>
                 </div>

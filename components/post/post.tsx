@@ -1,12 +1,21 @@
 import { useState } from "react";
 import PostModel from "../../model/post_model";
 import styles from './post.module.css'
+import Image from 'next/image'
 
 export default function Post(item?: PostModel) {
     return (
         <div className={styles.body_post}>
             <div className={styles.label_post}>
-                <div><img src={item?.photo ?? ""} className="w-100 rounded-circle" /></div>
+                <div>
+                    <Image
+                        alt={""}
+                        width={100}
+                        height={100}
+                        src={item?.photo ?? ""}
+                        className="w-100 rounded-circle"
+                    />
+                </div>
                 <p>{item?.user ?? ""}</p>
             </div>
             <div className={styles.info_post}>
