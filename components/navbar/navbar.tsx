@@ -1,13 +1,10 @@
 import Link from "next/link";
-import Image from 'next/image'
 import styles from './navbar.module.css'
 
 import { getItem } from "../../utils/localStorage";
 import { useState } from "react";
 import { PageNames } from "../../enums/page_enum";
 import { sessionFinished } from "../../utils/session";
-
-import Icon from '../../assets/icon.png'
 
 export default function Navbar() {
     const [navbar, setNavbar] = useState(styles.dnone);
