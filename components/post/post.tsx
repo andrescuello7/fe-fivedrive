@@ -22,7 +22,7 @@ export default function Post(item?: PostModel) {
                     <Image
                         alt={""}
                         width={100}
-                        height={40}
+                        height={37}
                         loader={() => src}
                         src={src}
                         className="w-100 rounded-circle"

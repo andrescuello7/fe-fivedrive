@@ -75,7 +75,8 @@
 @media (max-Width: 780px) {
   .body_responsive_navbar {
     display: block;
-    border-bottom: solid 1px var(--default-background);
+    background-color: var(--default-background-L1);
+    border-bottom: none;
     height: 100%;
     display: flex;
     justify-content: flex-start;
@@ -85,8 +86,8 @@
     font-weight: 500;
     color: white;
     padding: 10px;
+    border-radius: 0px 00px 5px 5px;
   }
-
   .body_navbar {
     display: none;
   }
@@ -104,6 +105,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50px;
+    background-color: var(--default-background-L2);
   }
 
   .items_navbar {

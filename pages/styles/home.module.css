@@ -102,6 +102,18 @@
     height: 90vh;
   }
 
+  .body_home {
+    background: var(--default-background-L2);
+  }
+
+  .posts_home::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .posts_home::-webkit-scrollbar-thumb {
+    background-color: var(--default-background-L2);
+  }
+  
   .explore_home {
     display: none;
   }
