@@ -23,8 +23,7 @@ export default function Home() {
                     </section>
                 </div>
                 <div className={styles.posts_home}>
-                    <p>Your <b>Feed</b></p>
-                    <br />
+                    <p className='px-2'>Your <b>Feed</b></p>
                     <section className='pb-4'>
                         {_con.mapPost}
                     </section>
