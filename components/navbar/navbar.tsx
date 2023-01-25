@@ -65,13 +65,7 @@ export default function Navbar() {
                 <div onClick={() => setNavbar(navbar == styles.dnone ? styles.dblock : styles.dnone)} className={styles.logo_navbar}>
                     <div className={styles.logo_navbar}>
                         <div>
-                            <Image
-                                alt={""}
-                                width={100}
-                                height={100}
-                                src={Icon}
-                                className="w-100 rounded-circle p-2"
-                            />
+                            ♟
                         </div>
                     </div>
                 </div>
