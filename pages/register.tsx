@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Navbar from '../components/navbar/navbar';
-import styles from '../styles/register.module.css'
+import styles from './styles/register.module.css'
 import useSession from '../hooks/useSession';
 
 export default function Register() {
@@ -15,12 +15,6 @@ export default function Register() {
                         <p>Welcome Sing Up!</p>
                     </div>
                     <div>
-                        <input
-                            name="fullname"
-                            type="text"
-                            placeholder='full name'
-                            onChange={_con.onChange}
-                            className={_con.valid ? 'border border-1 border-danger' : ""} />
                         <input
                             name="username"
                             type="text"

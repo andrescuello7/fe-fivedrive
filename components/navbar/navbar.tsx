@@ -22,13 +22,13 @@ export default function Navbar() {
                     </div>
                 </div>
                 <div className={styles.items_navbar}>
-                    <div>
+                    <div className="pt-3">
                         <p>Pull request</p>
                     </div>
-                    <div>
+                    <div className="pt-3">
                         <p>Issues</p>
                     </div>
-                    <div>
+                    <div className="pt-3">
                         <p>Explore</p>
                     </div>
                 </div>
@@ -38,23 +38,28 @@ export default function Navbar() {
                         placeholder='Search or jump to'
                     />
                 </div>
-                <div className={styles.logo_navbar}>
-                    <Link href={`${PageNames.LOGIN}`}>
-                        <button>
-                            SingIn
-                        </button>
-                    </Link>
-                    <Link href={`${PageNames.REGISTER}`}>
-                        <button>
-                            SingUp
-                        </button>
-                    </Link>
-                    <Link href={`${PageNames.LOGIN}`}>
-                        <button>
-                            Salir
-                        </button>
-                    </Link>
-                </div>
+                {token != "" ?
+                    <div className={styles.logo_navbar}>
+                        <Link href={`${PageNames.LOGIN}`}>
+                            <button onClick={sessionFinished}>
+                                Salir
+                            </button>
+                        </Link>
+                    </div>
+                    :
+                    <div className={styles.logo_navbar}>
+                        <Link href={`${PageNames.LOGIN}`}>
+                            <button>
+                                SingIn
+                            </button>
+                        </Link>
+                        <Link href={`${PageNames.REGISTER}`}>
+                            <button>
+                                SingUp
+                            </button>
+                        </Link>
+                    </div>
+                }
             </div>
             <div className={styles.body_responsive_navbar}>
                 <div onClick={() => setNavbar(navbar == styles.dnone ? styles.dblock : styles.dnone)} className={styles.logo_navbar}>
@@ -83,7 +88,7 @@ export default function Navbar() {
                         </div>
                         <div>
                             <Link href={`${PageNames.LOGIN}`} className="text-decoration-none text-light">
-                                <p>Salir</p>
+                                <p onClick={sessionFinished}>Salir</p>
                             </Link>
                         </div>
                     </div>

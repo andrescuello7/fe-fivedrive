@@ -13,7 +13,6 @@ export default function useSession() {
 
     const [valid, setvalid] = useState(false);
     const [form, setform] = useState({
-        fullname: "",
         username: "",
         password: "",
         email: "",
@@ -27,30 +26,30 @@ export default function useSession() {
 
     const SingIn = async () => {
         setvalid(false)
-        let result = users.map((item: any) => {
-            if (form.password === item.password && form.username === item.username) {
-                return true;
+        try {
+            const { data } = await axios.post(apiNames.API_AUTH, form)
+            if (typeof window !== 'undefined' && data !== undefined) {
+                const user = await axios.get(`${apiNames.GITHUB}${form.username}`)
+                const repos = await axios.get(`${apiNames.GITHUB_REPOS(form.username)}`)
+                setItem("user", user.data);
+                setItem("repos", repos.data);
             }
-            return false;
-        })
-        if (typeof window !== 'undefined' && result[0]) {
-            const user = await axios.get(`${apiNames.GITHUB}${form.username}`)
-            const repos = await axios.get(`${apiNames.GITHUB_REPOS("andrescuello7")}`)
-            setItem("user", user.data);
-            setItem("repos", repos.data);
-            setItem("token", "eykjerfldkmnbts");
+            setItem("token", data.response.access_token);
             router.push(PageNames.HOME)
-        } else {
+        } catch (error) {
+            console.error(error)
             setvalid(true)
         }
+
     }
 
-    const SingUp = () => {
-        if (form.password != "" && form.email != "" && form.fullname != "" && form.username != "") {
-            users.push(form)
-            setItem("users", users);
-            router.push(PageNames.LOGIN)
-        } else {
+    const SingUp = async () => {
+        try {
+            const { data } = await axios.post(apiNames.API_USER, form)
+            setItem("token", data.response.access_token);
+            router.push(PageNames.HOME)
+        } catch (error) {
+            console.error(error)
             setvalid(true)
         }
     }

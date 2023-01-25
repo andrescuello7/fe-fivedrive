@@ -1,6 +1,6 @@
 import Navbar from '../components/navbar/navbar';
 import useSession from '../hooks/useSession';
-import styles from '../styles/login.module.css'
+import styles from './styles/login.module.css'
 
 export default function Login() {
     const _con = useSession();

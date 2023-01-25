@@ -11,6 +11,8 @@ export const sessionToken = () => {
 }
 export const sessionFinished = () => {
     rmItem("token");
+    rmItem("user");
+    rmItem("repos");
     window.location.href = PageNames.LOGIN
     // router.push('/login');
 }
