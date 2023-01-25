@@ -2,7 +2,7 @@
   overflow-y: hidden;
   background: var(--default-background-L1);
   width: 100%;
-  font-family: cursive;
+  font-family: var(--default-font);
   color: white;
   height: 100vh;
 }
@@ -43,7 +43,7 @@
   color: white;
   padding: 10px;
   width: 90%;
-  font-family: cursive;
+  font-family: var(--default-font);
   border-radius: 5px;
 }
 

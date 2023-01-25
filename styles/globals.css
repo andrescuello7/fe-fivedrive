@@ -3,9 +3,7 @@
   --default-background: rgb(0, 0, 0);
   --default-background-L1: rgb(5, 5, 5);
   --default-title: 239, 245, 249;
-  --default-font: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --default-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --border-radius: 12px;
   --border-radius-L1: 8px;
 }

@@ -35,7 +35,7 @@ export default function Post(item?: PostModel) {
                 <p>{item?.label ?? ""}</p>
                 <div>
                     <div className={color}></div>
-                    <i>{item?.lenguage ?? ""}</i>
+                    <p className="m-0">{item?.lenguage ?? ""}</p>
                 </div>
             </div>
         </div>
