@@ -6,7 +6,9 @@ export default async function Home() {
     <>
     <Navbar />
     <div className={styles.body_home}>
-      <p>Hola mundo</p>
+      <div>
+        <input type="text" className={styles.input} placeholder="Buscar..." />
+      </div>
     </div>
     </>
   );
