@@ -36,9 +36,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 350ms;
 }
 .items_navbar div:hover{
-  transition: 350ms;
   color: rgba(255, 255, 255, 0.709);
 }
 

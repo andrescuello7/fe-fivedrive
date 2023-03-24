@@ -8,9 +8,21 @@
 }
 .input{
   height: 40px;
-  width: 98vw;
+  width: 92vw;
   background-color: var(--default-background);
   border: none;
   margin: 1%;
   padding: 0px 10px;
+}
+.button{
+  border: none;
+  background-color: var(--default-background-LGO);
+  color: black;
+  padding: 10px;
+  height: 40px;
+  border-radius: 2px 4px;
+  transition: 300ms;
+}
+.button:hover{
+  background-color: var(--default-background-LG);
 }
