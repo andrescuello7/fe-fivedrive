@@ -1,8 +1,5 @@
 import "antd/dist/antd.css";
-// import Footer from "./components/footer/Footer";
-// import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
-import Navbar from "./components/navbar/navbar";
 
 export const metadata = {
   title: {
@@ -20,9 +17,7 @@ export default function RootLayout({
     <html lang="es">
       <head />
       <body>
-        <Navbar />
         {children}
-        {/* <Footer /> */}
       </body>
     </html>
   );
