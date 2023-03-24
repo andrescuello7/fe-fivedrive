@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { PageNames } from '../enums/page_enum';
+import { PageNames } from '../enums/pageEnum';
 import { setItem, getItem } from "../utils/localStorage";
-import ApiNames from '../enums/api_enum';
+import ApiNames from '../enums/apiEnum';
 
 export default function useSession() {
     const apiNames = ApiNames();

@@ -1,0 +1,11 @@
+.body_home {
+  overflow-y: hidden;
+  background: var(--default-background-L1);
+  width: 100%;
+  font-family: var(--default-font);
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

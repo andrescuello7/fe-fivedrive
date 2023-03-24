@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { sessionToken } from '../utils/session';
-import ApiNames from '../enums/api_enum';
+import ApiNames from '../enums/apiEnum';
 import Post from '../components/post/post';
 
 export default function useInfo() {
