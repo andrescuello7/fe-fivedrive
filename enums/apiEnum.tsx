@@ -1,4 +1,4 @@
-export default function ApiNames() {
+export default function ApiEnum() {
     let GITHUB = "https://api.github.com/users/";
     let GITHUB_REPOS = (user: string) => `https://api.github.com/users/${user}/repos`;
 
