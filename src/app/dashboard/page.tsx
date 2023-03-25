@@ -1,3 +1,4 @@
+import Navbar from "../components/navbar/navbar";
 import Dashboard from "./components/dashboard";
 
 export const metadata = {
@@ -5,5 +6,10 @@ export const metadata = {
 };
 
 export default function DashboardPage() {
-  return <Dashboard />;
+  return (
+    <>
+      <Navbar />
+      <Dashboard />
+    </>
+  );
 }

@@ -5,24 +5,39 @@
   font-family: var(--default-font);
   color: white;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0% 100px;
+}
+.textField{
+  margin: 20px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .input{
   height: 40px;
   width: 92vw;
-  background-color: var(--default-background);
+  background-color: transparent;
   border: none;
   margin: 1%;
   padding: 0px 10px;
+  border-radius: 4px;
+  border: 1px solid white;
 }
 .button{
-  border: none;
-  background-color: var(--default-background-LGO);
+  width: 200px;
+  background-color: white;
   color: black;
-  padding: 10px;
   height: 40px;
-  border-radius: 2px 4px;
-  transition: 300ms;
+  border: none;
+  border-radius: 4px;
+  transition: 400ms;
 }
 .button:hover{
-  background-color: var(--default-background-LG);
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
 }

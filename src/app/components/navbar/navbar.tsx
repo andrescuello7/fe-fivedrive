@@ -10,9 +10,15 @@ export default function Navbar() {
         </Link>
       </div>
       <div className={styles.items_navbar}>
-        <div>Dashboard</div>
-        <div>Contacto</div>
-        <div>Nosotros</div>
+        <Link href={`dashboard`}>
+          <div>Dashboard</div>
+        </Link>
+        <Link href={`/`}>
+          <div>Contacto</div>
+        </Link>
+        <Link href={`/`}>
+          <div>Nosotros</div>
+        </Link>
       </div>
       <div className={styles.logo_navbar}>
         <Link href={`login`}>
