@@ -1,0 +1,65 @@
+.post_body {
+  padding: 15px;
+  width: 100%;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  background-color: var(--default-background);
+  border: 1px solid #66676f31;
+}
+
+.photo_user {
+  width: 42px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #3c3d4386;
+  margin-right: 15px;
+}
+
+.buttons button {
+  width: 100px;
+  background-color: transparent;
+  border: 1px solid #66676f31;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 10px;
+  transition: 400ms;
+}
+
+.buttons button:hover {
+  transition: 400ms;
+  border: none;
+  background-color: #66676f31;
+}
+
+.photo_comment {
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+  background-color: #3c3d4386;
+  margin-right: 15px;
+}
+
+.post_body div input {
+  width: 90%;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  background-color: #2e2f3486;
+  border-radius: 20px 0px 0px 20px;
+  padding-left: 10px;
+}
+
+.post_body div button {
+  width: 60px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: #2e2f3486;
+  border-radius: 0px 20px 20px 0px;
+}
