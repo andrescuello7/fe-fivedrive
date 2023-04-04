@@ -1,6 +1,12 @@
+"use client";
+import { getPosts } from "services/posts.service";
 import styles from "./form.module.css";
 
 export default function FormPost() {
+  const postMethod = async () => {
+    const response = await getPosts();
+    console.log("Hola mundo")
+  };
   return (
     <>
       <div className={styles.form_post}>
@@ -55,7 +61,7 @@ export default function FormPost() {
           </div>
           <div className={styles.buttons}>
             <a style={{ color: "white", marginRight: "10px" }}>Editar</a>
-            <button>Subir</button>
+            <button onClick={postMethod}>Subir</button>
           </div>
         </div>
       </div>
