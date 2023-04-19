@@ -1,5 +1,10 @@
 export async function getPosts() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   if (!response.ok) {
     throw new Error("Error");
   }
@@ -8,7 +13,7 @@ export async function getPosts() {
 }
 
 export async function createPosts(data: any) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -24,7 +29,7 @@ export async function createPosts(data: any) {
 
 export async function updatePosts(data: any, id: any) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}users/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}posts/${id}`,
     {
       method: "PUT",
       body: JSON.stringify(data),
@@ -42,7 +47,7 @@ export async function updatePosts(data: any, id: any) {
 
 export async function deletePosts(id: any) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}users/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}posts/${id}`,
     {
       method: "DELETE",
       headers: {

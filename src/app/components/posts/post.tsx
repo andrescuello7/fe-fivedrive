@@ -1,6 +1,7 @@
+import { IPostsInfo } from "interfaces/IPostsInfo";
 import styles from "./post.module.css";
 
-export default function Post() {
+export default function Post(item: IPostsInfo) {
   return (
     <div className={styles.post_body}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -13,7 +14,7 @@ export default function Post() {
             width: "100%",
           }}
         >
-          <div>4ndres_cuello</div>
+          <div>{item.userId}</div>
           <p style={{ color: "#b1b2ba31", display: "flex" }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -45,12 +46,7 @@ export default function Post() {
         </div>
       </div>
       <div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui et quam
-          dolorum debitis expedita sit, aut deserunt quod illo quae quisquam quo
-          molestiae, illum recusandae, error reprehenderit eaque! Molestiae,
-          dolore.
-        </p>
+        <p>{item.description}</p>
       </div>
       <div style={{ display: "flex" }}>
         <div className={styles.photo_comment}></div>

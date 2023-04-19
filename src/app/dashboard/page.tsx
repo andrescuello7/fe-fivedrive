@@ -8,7 +8,7 @@ export const metadata = {
 export default function DashboardPage() {
   return (
     <>
-        <Navbar />
+      <Navbar />
       <Dashboard />
     </>
   );

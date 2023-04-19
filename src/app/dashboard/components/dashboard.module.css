@@ -28,7 +28,7 @@
   border-right: 1px solid var(--default-background);
   background-color: transparent;
   color: white;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .form_post {
