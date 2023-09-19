@@ -2,6 +2,7 @@
   border-bottom: solid 1px var(--default-background);
   height: 80px;
   display: flex;
+  z-index: 1;
   position: fixed;
   width: 100%;
   justify-content: space-around;
@@ -46,12 +47,35 @@
 }
 
 .body_navbar div button {
-  border-bottom: none;
   margin: 0px 10px;
-  color: white;
-  border: 1px solid var(--default-background-LGO);
-  background-color: transparent;
   font-family: var(--default-font);
   border-radius: 4px;
   padding: 8px 20px;
+  transition: 600ms;
+}
+
+.buttonLogin {
+  color: white;
+  border: 1px solid var(--default-background-LG);
+  background-color: transparent;
+}
+
+.buttonRegister {
+  color: black;
+  border: none;
+  background-color: var(--default-background-LG);
+  font-family: var(--default-font);
+}
+
+.buttonLogin:hover {
+  color: white;
+  border: 1px solid var(--default-background-LGO);
+  background-color: transparent;
+}
+
+.buttonRegister:hover {
+  color: black;
+  border: none;
+  background-color: var(--default-background-LGO);
+  font-family: var(--default-font);
 }

@@ -19,10 +19,10 @@ export default function Navbar() {
       </div>
       <div className={styles.logo_navbar}>
         <Link href={`login`}>
-          <button>Iniciar</button>
+          <button className={styles.buttonLogin}>Iniciar</button>
         </Link>
         <Link href={`register`}>
-          <button>Registrarme</button>
+          <button className={styles.buttonRegister}>Registrarme</button>
         </Link>
       </div>
     </div>
