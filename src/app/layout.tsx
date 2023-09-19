@@ -3,8 +3,8 @@ import "./globals.css";
 
 export const metadata = {
   title: {
-    default: "FiveDrive",
-    template: "%s | FiveDrive",
+    default: "Firedrive",
+    template: "%s | Firedrive",
   },
 };
 

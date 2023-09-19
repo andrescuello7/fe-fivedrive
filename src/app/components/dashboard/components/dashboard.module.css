@@ -13,13 +13,13 @@
 }
 
 .bar {
-  width: 15%;
+  width: 20%;
 }
 
 .body {
   padding: 0% 5%;
   padding-top: 100px;
-  width: 70%;
+  width: 60%;
   min-height: 100%;
   display: flex;
   justify-content: flex-start;
@@ -77,7 +77,7 @@
 }
 
 .anuncie {
-  width: 15%;
+  width: 20%;
 }
 
 .posts{

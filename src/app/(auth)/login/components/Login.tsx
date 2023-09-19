@@ -31,7 +31,7 @@ const Login = () => {
   return (
     <div className={styles.body_login}>
       <div className={styles.form}>
-        <p className={styles.title}>FIVEDRIVE</p>
+        <p className={styles.title}>Firedrive</p>
         <p>Correo electrónico</p>
         <input
           onChange={(e) => onChangeMethod(e)}

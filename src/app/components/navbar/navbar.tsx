@@ -6,18 +6,12 @@ export default function Navbar() {
     <div className={styles.body_navbar}>
       <div className={styles.logo_navbar}>
         <Link href={`/`}>
-          <div className={styles.title}>Social-Network</div>
+          <div className={styles.title}>Firedrive</div>
         </Link>
       </div>
       <div className={styles.items_navbar}>
-        <Link href={`dashboard`}>
-          <div>Inicio</div>
-        </Link>
-        <Link href={`/search`}>
-          <div>Buscar</div>
-        </Link>
-        <Link href={`/`}>
-          <div>Nosotros</div>
+        <Link href={`about`}>
+          <div>About Us</div>
         </Link>
         <Link href={`https://andrescuello.netlify.app/`}>
           <div>Contacto</div>

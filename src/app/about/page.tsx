@@ -1,15 +1,15 @@
 import Navbar from "../components/navbar/navbar";
-import Dashboard from "./components/dashboard";
+import AboutUs from "./components/about";
 
 export const metadata = {
-  title: "Dashboard",
+  title: "AboutUs",
 };
 
 export default function DashboardPage() {
   return (
     <>
       <Navbar />
-      <Dashboard />
+      <AboutUs />
     </>
   );
 }

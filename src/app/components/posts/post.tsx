@@ -8,7 +8,7 @@ export default function Post(item: IPosts) {
 
   useEffect(() => {
     const handleDocumentClick = (e: any) => {
-      if (options && !e.target.closest("#modal")) {
+      if (options && !e.target.closest("#options")) {
         setOptions(false);
       }
     };
@@ -22,13 +22,14 @@ export default function Post(item: IPosts) {
     try {
       await deletePosts(item.id!);
       await item.getPostsMethod!();
+      setOptions(false);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className={styles.post_body}>
+    <div id="options" className={styles.post_body}>
       <div className={options ? styles.options : styles.optionsNone}>
         <div>
           <b>Ver Perfil</b>

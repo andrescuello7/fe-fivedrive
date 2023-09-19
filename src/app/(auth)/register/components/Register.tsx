@@ -6,19 +6,20 @@ import { useRouter } from "next/navigation";
 import { createUsers } from "services/users.service";
 
 const Register = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [userModel, setUserModel] = useState<UserModel>();
 
   const CreateUserMethod = async () => {
     try {
       const response = await createUsers(userModel!);
-      console.log({response});
-      router.push('/login');
+      if (response) {
+        router.push("/login");
+      }
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   const onChangeMethod = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserModel((prevAuthModel: any) => ({
@@ -26,14 +27,15 @@ const Register = () => {
       [name]: value,
     }));
   };
+
   return (
     <div className={styles.body_login}>
       <div className={styles.form}>
-        <p className={styles.title}>FIVEDRIVE</p>
+        <p className={styles.title}>Firedrive</p>
         <p>Usuario</p>
         <input
           onChange={(e) => onChangeMethod(e)}
-          placeholder="JohnSmith7"
+          placeholder="johnSmith"
           name="fullname"
           type="text"
           className={styles.textField}
@@ -41,7 +43,7 @@ const Register = () => {
         <p>Correo electrónico</p>
         <input
           onChange={(e) => onChangeMethod(e)}
-          placeholder="john@example.com"
+          placeholder="john@fivedrive.com"
           name="email"
           type="email"
           className={styles.textField}
@@ -54,9 +56,15 @@ const Register = () => {
           type="password"
           className={styles.textField}
         />
-        <button onClick={CreateUserMethod}>
-          Registrarme
-        </button>
+        <p>Repetir Contraseña</p>
+        <input
+          onChange={(e) => onChangeMethod(e)}
+          placeholder="*************"
+          name="password"
+          type="password"
+          className={styles.textField}
+        />
+        <button onClick={CreateUserMethod}>Registrarme</button>
       </div>
     </div>
   );

@@ -24,6 +24,7 @@
   margin-bottom: 20px;
   background-color: #2a2b2e;
   border: none;
+  border-radius: 5px;
 }
 .form input:hover{
   border: 1px solid var(--default-background-LGO);
