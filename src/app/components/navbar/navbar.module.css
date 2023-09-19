@@ -17,10 +17,11 @@
 }
 
 .title{
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 800;
   font-style: italic;
   color: white;
+  width: 200px;
 }
 
 .items_navbar {

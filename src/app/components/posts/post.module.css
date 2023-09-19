@@ -1,4 +1,5 @@
 .post_body {
+  position: relative;
   padding: 15px;
   margin-bottom: 20px;
   width: 100%;
@@ -63,4 +64,21 @@
   border: none;
   background-color: #2e2f3486;
   border-radius: 0px 20px 20px 0px;
+}
+
+.optionsNone{
+  display: none;
+}
+
+.options{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 100;
+  right: 10px;
+  width: 180px;
+  border-radius: 5px;
+  background-color: var(--default-background);
+  border: 1px solid #535458;
+  padding: 10px;
 }

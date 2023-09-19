@@ -1,18 +1,31 @@
 "use client";
-import { getPosts } from "services/posts.service";
 import styles from "./form.module.css";
+import { ChangeEvent, useState } from "react";
 
-export default function FormPost() {
-  const postMethod = async () => {
-    const response = await getPosts();
-    console.log("Hola mundo")
+interface PostModelActions{
+  onChangeMethod: (e: ChangeEvent<HTMLInputElement>) => void;
+  createPostMethod: () => void;
+}
+
+export default function FormPost({createPostMethod, onChangeMethod}:PostModelActions) {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+    onChangeMethod(e);
   };
+
+  const handleUploadClick = () => {
+    createPostMethod();
+    setInputValue("");
+  };
+
   return (
     <>
       <div className={styles.form_post}>
         <div style={{ display: "flex" }}>
           <div className={styles.photo}></div>
-          <input type="text" placeholder="Que estas pensando?" />
+          <input onChange={e => handleInputChange(e)} value={inputValue} name="description" type="text" placeholder="Que estas pensando?" />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "flex" }}>
@@ -61,7 +74,7 @@ export default function FormPost() {
           </div>
           <div className={styles.buttons}>
             <a style={{ color: "white", marginRight: "10px" }}>Editar</a>
-            <button onClick={postMethod}>Subir</button>
+            <button onClick={handleUploadClick}>Subir</button>
           </div>
         </div>
       </div>

@@ -1,22 +1,46 @@
 "use client";
-import styles from "../register.module.css";
+import { ChangeEvent, useState } from "react";
+import styles from "./register.module.css";
+import UserModel from "model/UserModel";
+import { useRouter } from "next/navigation";
+import { createUsers } from "services/users.service";
 
 const Register = () => {
+  const router = useRouter()
+  const [userModel, setUserModel] = useState<UserModel>();
+
+  const CreateUserMethod = async () => {
+    try {
+      const response = await createUsers(userModel!);
+      console.log({response});
+      router.push('/login');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  const onChangeMethod = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserModel((prevAuthModel: any) => ({
+      ...prevAuthModel,
+      [name]: value,
+    }));
+  };
   return (
     <div className={styles.body_login}>
       <div className={styles.form}>
         <p className={styles.title}>FIVEDRIVE</p>
         <p>Usuario</p>
         <input
-          id="outlined-controlled"
+          onChange={(e) => onChangeMethod(e)}
           placeholder="JohnSmith7"
-          name="username"
+          name="fullname"
           type="text"
           className={styles.textField}
         />
         <p>Correo electrónico</p>
         <input
-          id="outlined-controlled"
+          onChange={(e) => onChangeMethod(e)}
           placeholder="john@example.com"
           name="email"
           type="email"
@@ -24,17 +48,13 @@ const Register = () => {
         />
         <p>Contraseña</p>
         <input
-          id="outlined-controlled"
+          onChange={(e) => onChangeMethod(e)}
           placeholder="*************"
           name="password"
           type="password"
           className={styles.textField}
         />
-        <button
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        >
+        <button onClick={CreateUserMethod}>
           Registrarme
         </button>
       </div>

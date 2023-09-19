@@ -1,3 +1,5 @@
+import UserModel from "model/UserModel";
+
 export async function getUsers() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users`);
   if (!response.ok) {
@@ -7,10 +9,10 @@ export async function getUsers() {
   return users;
 }
 
-export async function createUsers(data: any) {
+export async function createUsers(user: UserModel) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users`, {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(user),
     headers: {
       "Content-Type": "application/json",
     },
@@ -22,7 +24,7 @@ export async function createUsers(data: any) {
   return auth;
 }
 
-export async function updateUsers(data: any, id: any) {
+export async function updateUsers(data: UserModel, id: number) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}users/${id}`,
     {
@@ -40,7 +42,7 @@ export async function updateUsers(data: any, id: any) {
   return auth;
 }
 
-export async function deleteUsers(id: any) {
+export async function deleteUsers(id: number) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}users/${id}`,
     {

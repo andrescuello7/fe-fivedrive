@@ -6,7 +6,7 @@ export default function Navbar() {
     <div className={styles.body_navbar}>
       <div className={styles.logo_navbar}>
         <Link href={`/`}>
-          <div className={styles.title}>FIVEDRIVE</div>
+          <div className={styles.title}>Social-Network</div>
         </Link>
       </div>
       <div className={styles.items_navbar}>

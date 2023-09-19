@@ -1,3 +1,5 @@
+import PostModel from "model/PostModel";
+
 export async function getPosts() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts`, {
     method: "GET",
@@ -12,10 +14,10 @@ export async function getPosts() {
   return users;
 }
 
-export async function createPosts(data: any) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts`, {
+export async function createPosts(post: PostModel) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}post`, {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(post),
     headers: {
       "Content-Type": "application/json",
     },
@@ -23,16 +25,16 @@ export async function createPosts(data: any) {
   if (!response.ok) {
     throw new Error("Error");
   }
-  const auth = await response.json();
-  return auth;
+  const result = await response.json();
+  return result;
 }
 
-export async function updatePosts(data: any, id: any) {
+export async function updatePosts(post: PostModel, id: number) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}posts/${id}`,
     {
       method: "PUT",
-      body: JSON.stringify(data),
+      body: JSON.stringify(post),
       headers: {
         "Content-Type": "application/json",
       },
@@ -45,9 +47,9 @@ export async function updatePosts(data: any, id: any) {
   return auth;
 }
 
-export async function deletePosts(id: any) {
+export async function deletePosts(id: number) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}posts/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}post/${id}`,
     {
       method: "DELETE",
       headers: {
@@ -58,6 +60,6 @@ export async function deletePosts(id: any) {
   if (!response.ok) {
     throw new Error("Error");
   }
-  const auth: any = await response.json();
-  return auth;
+  const post = await response.json();
+  return post;
 }

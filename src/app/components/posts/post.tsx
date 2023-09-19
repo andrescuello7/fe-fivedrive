@@ -1,9 +1,42 @@
-import { IPostsInfo } from "interfaces/IPostsInfo";
+import { IPosts } from "interfaces/IPostModel";
 import styles from "./post.module.css";
+import { useEffect, useState } from "react";
+import { deletePosts } from "services/posts.service";
 
-export default function Post(item: IPostsInfo) {
+export default function Post(item: IPosts) {
+  const [options, setOptions] = useState(false);
+
+  useEffect(() => {
+    const handleDocumentClick = (e: any) => {
+      if (options && !e.target.closest("#modal")) {
+        setOptions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleDocumentClick);
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, [options]);
+
+  const DeleteByIdMethod = async () => {
+    try {
+      await deletePosts(item.id!);
+      await item.getPostsMethod!();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className={styles.post_body}>
+      <div className={options ? styles.options : styles.optionsNone}>
+        <div>
+          <b>Ver Perfil</b>
+        </div>
+        <div style={{ color: "red" }} onClick={DeleteByIdMethod}>
+          <b>Eliminar</b>
+        </div>
+      </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div className={styles.photo_user}></div>
         <div
@@ -14,7 +47,7 @@ export default function Post(item: IPostsInfo) {
             width: "100%",
           }}
         >
-          <div>{item.userId}</div>
+          <div>{item.user}</div>
           <p style={{ color: "#b1b2ba31", display: "flex" }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +64,7 @@ export default function Post(item: IPostsInfo) {
             <i>12 minutes</i>
           </p>
         </div>
-        <div style={{ marginTop: "10px" }}>
+        <div style={{ marginTop: "10px" }} onClick={() => setOptions(!options)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="23"
@@ -45,12 +78,12 @@ export default function Post(item: IPostsInfo) {
           </svg>
         </div>
       </div>
-      <div>
+      <div style={{ marginTop: "10px" }}>
         <p>{item.description}</p>
       </div>
       <div style={{ display: "flex" }}>
         <div className={styles.photo_comment}></div>
-        <input type="text" placeholder="Comentario" />
+        <input type="text" name="description" placeholder="Comentario" />
         <button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
