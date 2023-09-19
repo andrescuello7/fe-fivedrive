@@ -28,13 +28,13 @@ export default function FormPost({createPostMethod, onChangeMethod}:PostModelAct
           <input onChange={e => handleInputChange(e)} value={inputValue} name="description" type="text" placeholder="Que estas pensando?" />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ marginLeft: "10px" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <div style={{ marginLeft: "10px", display: "flex", alignItems: "center" }}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="23"
-                height="23"
-                style={{ color: "#b1b2ba31" }}
+                width="18"
+                height="18"
+                style={{ color: "var(--default-background-LG0)" }}
                 fill="currentColor"
                 className="bi bi-camera"
                 viewBox="0 0 16 16"
@@ -43,13 +43,13 @@ export default function FormPost({createPostMethod, onChangeMethod}:PostModelAct
                 <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
               </svg>
             </div>
-            <div style={{ marginLeft: "10px" }}>
+            <div style={{ marginLeft: "10px", display: "flex", alignItems: "center" }}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="23"
-                height="23"
+                width="18"
+                height="18"
                 fill="currentColor"
-                style={{ color: "#b1b2ba31" }}
+                style={{ color: "var(--default-background-LG0)" }}
                 className="bi bi-card-image"
                 viewBox="0 0 16 16"
               >
@@ -57,12 +57,12 @@ export default function FormPost({createPostMethod, onChangeMethod}:PostModelAct
                 <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z" />
               </svg>
             </div>
-            <div style={{ marginLeft: "10px" }}>
+            <div style={{ marginLeft: "10px", display: "flex", alignItems: "center" }}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="23"
-                height="23"
-                style={{ color: "#b1b2ba31" }}
+                width="18"
+                height="18"
+                style={{ color: "var(--default-background-LG0)" }}
                 fill="currentColor"
                 className="bi bi-geo-alt"
                 viewBox="0 0 16 16"

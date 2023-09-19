@@ -55,7 +55,7 @@ export default function Post(item: IPosts) {
               width="14"
               height="14"
               fill="currentColor"
-              style={{ marginRight: "2px", marginTop: "2px" }}
+              style={{ marginRight: "2px", marginTop: "2px", color: "var(--default-background-LGO)" }}
               className="bi bi-stopwatch"
               viewBox="0 0 16 16"
             >
@@ -70,8 +70,8 @@ export default function Post(item: IPosts) {
             xmlns="http://www.w3.org/2000/svg"
             width="23"
             height="23"
-            style={{ color: "#b1b2ba31" }}
             fill="currentColor"
+            style={{ color: "var(--default-background-LGO)" }}
             className="bi bi-three-dots-vertical"
             viewBox="0 0 16 16"
           >
@@ -92,6 +92,7 @@ export default function Post(item: IPosts) {
             height="16"
             fill="currentColor"
             className="bi bi-send"
+            style={{ color: "var(--default-background-LG0)" }}
             viewBox="0 0 16 16"
           >
             <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />

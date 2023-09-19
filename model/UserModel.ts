@@ -1,6 +1,8 @@
 export default class UserModel {
-  email: string | undefined;
+  fullname: string | undefined;
   password: string | undefined;
+  email: string | undefined;
+  repeetPassword: string | undefined;
   
   getEmail(){
     return this.email;

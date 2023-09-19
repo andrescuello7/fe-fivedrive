@@ -30,16 +30,18 @@
 
 .buttons button {
   width: 100px;
-  background-color: transparent;
-  border: 1px solid #66676f31;
+  color: #2e2f34f0;
+  background-color: var(--default-background-LG);
+  border: none;
   height: 30px;
   border-radius: 5px;
   margin-left: 10px;
-  transition: 400ms;
+  transition: 600ms;
 }
 
 .buttons button:hover {
+  background-color: var(--default-background-LGO);
+  color: white;
   transition: 400ms;
   border: none;
-  background-color: #66676f31;
 }

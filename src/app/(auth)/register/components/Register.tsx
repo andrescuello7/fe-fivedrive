@@ -11,6 +11,9 @@ const Register = () => {
 
   const CreateUserMethod = async () => {
     try {
+      if (userModel?.password !== userModel?.repeetPassword ) {
+        throw new Error("Error creating user");
+      }
       const response = await createUsers(userModel!);
       if (response) {
         router.push("/login");
@@ -51,7 +54,7 @@ const Register = () => {
         <p>Contraseña</p>
         <input
           onChange={(e) => onChangeMethod(e)}
-          placeholder="*************"
+          placeholder="***********"
           name="password"
           type="password"
           className={styles.textField}
@@ -59,8 +62,8 @@ const Register = () => {
         <p>Repetir Contraseña</p>
         <input
           onChange={(e) => onChangeMethod(e)}
-          placeholder="*************"
-          name="password"
+          placeholder="***********"
+          name="repeetPassword"
           type="password"
           className={styles.textField}
         />
