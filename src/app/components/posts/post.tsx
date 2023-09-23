@@ -29,8 +29,8 @@ export default function Post(item: IPosts) {
   };
 
   return (
-    <div id="options" className={styles.post_body}>
-      <div className={options ? styles.options : styles.optionsNone}>
+    <div className={styles.post_body}>
+      <div id="options" className={options ? styles.options : styles.optionsNone}>
         <div>
           <b>Ver Perfil</b>
         </div>
