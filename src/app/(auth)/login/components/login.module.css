@@ -1,5 +1,4 @@
 .body_login {
-  overflow-y: hidden;
   background-color: #1F2023;
   width: 100%;
   display: flex;
@@ -17,6 +16,7 @@
 .form{
   display: flex;
   flex-direction: column;
+  width: 50%;
 }
 .form input{
   height: 50px;
@@ -33,7 +33,7 @@
   border: none;
   margin-top: 20px;
   padding: 0px 10px;
-  width: 500px;
+  width: 100%;
   height: 50px;
   color: #1F2023;
   font-size: 15px;
@@ -49,4 +49,12 @@
 .form button:hover {
   transition: 1s;
   background-color: var(--default-background-LG);
+}
+
+@media(max-width: 768px){
+  .form{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
 }

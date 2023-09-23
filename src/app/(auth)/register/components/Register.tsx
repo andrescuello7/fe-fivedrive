@@ -35,7 +35,7 @@ const Register = () => {
     <div className={styles.body_login}>
       <div className={styles.form}>
         <p className={styles.title}>Firedrive</p>
-        <p>Usuario</p>
+        <label>Usuario</label>
         <input
           onChange={(e) => onChangeMethod(e)}
           placeholder="johnSmith"
@@ -43,7 +43,7 @@ const Register = () => {
           type="text"
           className={styles.textField}
         />
-        <p>Correo electrónico</p>
+        <label>Correo electrónico</label>
         <input
           onChange={(e) => onChangeMethod(e)}
           placeholder="john@fivedrive.com"
@@ -51,7 +51,7 @@ const Register = () => {
           type="email"
           className={styles.textField}
         />
-        <p>Contraseña</p>
+        <label>Contraseña</label>
         <input
           onChange={(e) => onChangeMethod(e)}
           placeholder="***********"
@@ -59,7 +59,7 @@ const Register = () => {
           type="password"
           className={styles.textField}
         />
-        <p>Repetir Contraseña</p>
+        <label>Repetir Contraseña</label>
         <input
           onChange={(e) => onChangeMethod(e)}
           placeholder="***********"
