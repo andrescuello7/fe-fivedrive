@@ -1,5 +1,5 @@
 import Navbar from "@/app/components/navbar/navbar";
-import Profile from "./components/profile";
+import Profile from "./components/Profile";
 
 export const metadata = {
   title: "Profile",
