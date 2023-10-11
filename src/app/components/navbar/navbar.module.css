@@ -1,4 +1,6 @@
 .body_navbar {
+  position: relative;
+  top: 0px;
   border-bottom: solid 1px var(--default-background);
   height: 80px;
   display: flex;

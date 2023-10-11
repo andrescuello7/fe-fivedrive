@@ -1,6 +1,6 @@
 import AuthModel from "model/AuthModel";
 
-export async function getUsers() {
+export async function FindAllUsers() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users`);
   if (!response.ok) {
     throw new Error("Error");

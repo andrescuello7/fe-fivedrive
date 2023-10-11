@@ -1,3 +1,4 @@
+import Navbar from "@/app/components/navbar/navbar";
 import Register from "./components/Register";
 
 export const metadata = {
@@ -7,6 +8,7 @@ export const metadata = {
 export default function RegisterPage() {
   return (
     <>
+      <Navbar />
       <Register />
     </>
   );

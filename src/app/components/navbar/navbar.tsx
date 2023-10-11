@@ -10,12 +10,18 @@ export default function Navbar() {
         </Link>
       </div>
       <div className={styles.items_navbar}>
+        <Link href={``}>
+          <div>Home</div>
+        </Link>
+        <Link href={`profile`}>
+          <div>Profile</div>
+        </Link>
         <Link href={`about`}>
-          <div>About Us</div>
+          <div>AboutUs</div>
         </Link>
-        <Link href={`https://andrescuello.netlify.app/`}>
+        {/* <Link href={`https://andrescuello.netlify.app/`}>
           <div>Contacto</div>
-        </Link>
+        </Link> */}
       </div>
       <div className={styles.logo_navbar}>
         <Link href={`login`}>

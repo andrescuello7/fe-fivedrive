@@ -1,6 +1,6 @@
 import PostModel from "model/PostModel";
 
-export async function getPosts() {
+export async function FindAllPosts() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts`, {
     method: "GET",
     headers: {
@@ -14,7 +14,7 @@ export async function getPosts() {
   return users;
 }
 
-export async function createPosts(post: PostModel) {
+export async function CreatePost(post: PostModel) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}post`, {
     method: "POST",
     body: JSON.stringify(post),
@@ -29,7 +29,7 @@ export async function createPosts(post: PostModel) {
   return result;
 }
 
-export async function updatePosts(post: PostModel, id: number) {
+export async function UpdatePost(post: PostModel, id: number) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}posts/${id}`,
     {
@@ -47,7 +47,7 @@ export async function updatePosts(post: PostModel, id: number) {
   return auth;
 }
 
-export async function deletePosts(id: number) {
+export async function DeletePost(id: number) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}post/${id}`,
     {

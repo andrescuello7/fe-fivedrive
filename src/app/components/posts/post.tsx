@@ -1,7 +1,7 @@
 import { IPosts } from "interfaces/IPostModel";
 import styles from "./post.module.css";
 import { useEffect, useState } from "react";
-import { deletePosts } from "services/posts.service";
+import { DeletePost } from "services/posts.service";
 
 export default function Post(item: IPosts) {
   const [options, setOptions] = useState(false);
@@ -20,7 +20,7 @@ export default function Post(item: IPosts) {
 
   const DeleteByIdMethod = async () => {
     try {
-      await deletePosts(item.id!);
+      await DeletePost(item.id!);
       await item.getPostsMethod!();
       setOptions(false);
     } catch (error) {

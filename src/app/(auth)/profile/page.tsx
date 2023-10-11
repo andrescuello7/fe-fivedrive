@@ -1,15 +1,15 @@
 import Navbar from "@/app/components/navbar/navbar";
-import Login from "./components/Login";
+import Profile from "./components/profile";
 
 export const metadata = {
-  title: "Login",
+  title: "Profile",
 };
 
-export default function LoginPage() {
+export default function ProfilePage() {
   return (
     <>
       <Navbar />
-      <Login />
+      <Profile />
     </>
   );
 }

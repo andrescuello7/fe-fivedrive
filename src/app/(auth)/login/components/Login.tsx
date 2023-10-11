@@ -13,7 +13,7 @@ const Login = () => {
     try {
       const response = await Authentication(authModel!);
       if (!response) {
-        router.push('/dashboard')
+        router.push('/')
       }
     } catch (error) {
       console.error(error);

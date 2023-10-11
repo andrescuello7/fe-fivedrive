@@ -4,7 +4,7 @@
 import Post from "@/app/components/posts/post";
 import styles from "./dashboard.module.css";
 import FormPost from "../../form/form";
-import { createPosts, getPosts } from "services/posts.service";
+import { CreatePost, FindAllPosts } from "services/posts.service";
 import { ChangeEvent, useEffect, useState } from "react";
 import PostModel from "model/PostModel";
 
@@ -14,7 +14,7 @@ export default function Dashboard() {
 
   const createPostMethod = async () => {
     try {
-      await createPosts(postModel!);
+      await CreatePost(postModel!);
       await getPostsMethod();
     } catch (error) {
       console.error(error);
@@ -30,7 +30,7 @@ export default function Dashboard() {
   };
 
   const getPostsMethod = async () => {
-    const response = await getPosts();
+    const response = await FindAllPosts();
     setposts(response);
   };
 

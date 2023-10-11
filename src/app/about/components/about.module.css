@@ -12,13 +12,13 @@
 
 .title {
   text-align: center;
-  font-size: 80px;
+  font-size: 70px;
   font-weight: 800;
 }
 
 .description {
   position: relative;
-  top: 100px;
+  top: 50px;
   text-align: center;
   width: 55%;
   font-size: 25px;
@@ -29,7 +29,7 @@
 .button {
   margin: 0px 20px;
   position: relative;
-  top: 160px;
+  top: 100px;
   width: 200px;
   background-color: white;
   color: black;
@@ -43,7 +43,7 @@
 .button_outline {
   margin: 0px 20px;
   position: relative;
-  top: 160px;
+  top: 100px;
   width: 200px;
   background-color: transparent;
   color: rgb(255, 255, 255);
