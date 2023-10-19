@@ -1,10 +1,39 @@
 import { IPosts } from "interfaces/IPostModel";
 import styles from "./post.module.css";
-import { useEffect, useState } from "react";
+import { CreateComment } from "services/comments.service";
+import { ChangeEvent, useEffect, useState } from "react";
 import { DeletePost } from "services/posts.service";
+import CommentModel from "model/CommentModel";
 
-export default function Post(item: IPosts) {
+interface CommentModelActions{
+  item: IPosts;
+  getPostsMethod: () => void;
+}
+
+export default function Post(actions: CommentModelActions) {
   const [options, setOptions] = useState(false);
+  const [commentModel, setCommentModel] = useState<CommentModel>();
+  const [inputValue, setInputValue] = useState("");
+
+  const createPostMethod = async () => {
+    try {
+      commentModel!.postId = actions.item.id;
+      await CreateComment(commentModel!);
+      await actions.getPostsMethod();
+      setInputValue("")
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onChangeMethod = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInputValue(value)
+    setCommentModel((form: any) => ({
+      ...form,
+      [name]: inputValue,
+    }));
+  };
 
   useEffect(() => {
     const handleDocumentClick = (e: any) => {
@@ -20,8 +49,8 @@ export default function Post(item: IPosts) {
 
   const DeleteByIdMethod = async () => {
     try {
-      await DeletePost(item.id!);
-      await item.getPostsMethod!();
+      await DeletePost(actions.item.id!);
+      await actions.item.getPostsMethod!();
       setOptions(false);
     } catch (error) {
       console.log(error);
@@ -48,7 +77,7 @@ export default function Post(item: IPosts) {
             width: "100%",
           }}
         >
-          <div>{item.user}</div>
+          <div>{actions.item.user}</div>
           <p style={{ color: "#b1b2ba31", display: "flex" }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -80,12 +109,12 @@ export default function Post(item: IPosts) {
         </div>
       </div>
       <div style={{ marginTop: "10px" }}>
-        <p>{item.description}</p>
+        <p>{actions.item.description}</p>
       </div>
       <div style={{ display: "flex" }}>
         <div className={styles.photo_comment}></div>
-        <input type="text" name="description" placeholder="Comentario" />
-        <button>
+        <input type="text" onChange={onChangeMethod} value={inputValue} name="description" placeholder="Comentario" />
+        <button onClick={createPostMethod}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

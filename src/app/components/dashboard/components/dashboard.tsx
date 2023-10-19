@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import Post from "@/app/components/posts/post";
@@ -52,11 +51,13 @@ export default function Dashboard() {
             {posts.map((item: PostModel, index: number) => (
               <Post
                 key={index}
-                id={item.id}
-                title={item.title}
-                description={item.description}
-                photo={item.photo}
-                user={item.user}
+                item={{
+                  description: item.description,
+                  id: item.id,
+                  photo: item.photo,
+                  user: item.user,
+                  title: item.title
+                }}
                 getPostsMethod={getPostsMethod}
               />
             ))}
