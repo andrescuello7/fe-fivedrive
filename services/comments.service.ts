@@ -14,8 +14,8 @@ export async function FindAllPosts() {
   return users;
 }
 
-export async function CreateComment(comment: CommentModel) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}comment`, {
+export async function CreateComment(comment: CommentModel, id: number) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}comment/${id}`, {
     method: "POST",
     body: JSON.stringify(comment),
     headers: {

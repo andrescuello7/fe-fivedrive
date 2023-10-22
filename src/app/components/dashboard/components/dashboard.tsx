@@ -48,16 +48,11 @@ export default function Dashboard() {
           />
           <br />
           <div className={styles.posts}>
-            {posts.map((item: PostModel, index: number) => (
+            {posts.map((item: any, index: number) => (
               <Post
                 key={index}
-                item={{
-                  description: item.description,
-                  id: item.id,
-                  photo: item.photo,
-                  user: item.user,
-                  title: item.title
-                }}
+                post={item.post}
+                comments={item.comments}
                 getPostsMethod={getPostsMethod}
               />
             ))}

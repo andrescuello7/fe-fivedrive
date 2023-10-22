@@ -4,35 +4,33 @@ import { CreateComment } from "services/comments.service";
 import { ChangeEvent, useEffect, useState } from "react";
 import { DeletePost } from "services/posts.service";
 import CommentModel from "model/CommentModel";
+import { ICommentModel } from "interfaces/ICommentModel";
 
-interface CommentModelActions{
-  item: IPosts;
+interface CommentModelActions {
+  post: IPosts;
+  comments: ICommentModel[];
   getPostsMethod: () => void;
 }
 
-export default function Post(actions: CommentModelActions) {
+export default function Post({ getPostsMethod, post, comments }: CommentModelActions) {
   const [options, setOptions] = useState(false);
-  const [commentModel, setCommentModel] = useState<CommentModel>();
-  const [inputValue, setInputValue] = useState("");
+  const [description, setDescription] = useState("");
 
   const createPostMethod = async () => {
     try {
-      commentModel!.postId = actions.item.id;
-      await CreateComment(commentModel!);
-      await actions.getPostsMethod();
-      setInputValue("")
+      const commentModel = new CommentModel()
+      commentModel.setDescription(description);
+      await CreateComment(commentModel, post.id!);
+      getPostsMethod();
+      setDescription("")
     } catch (error) {
       console.error(error);
     }
   };
 
   const onChangeMethod = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setInputValue(value)
-    setCommentModel((form: any) => ({
-      ...form,
-      [name]: inputValue,
-    }));
+    const { value } = e.target;
+    setDescription(value)
   };
 
   useEffect(() => {
@@ -49,8 +47,8 @@ export default function Post(actions: CommentModelActions) {
 
   const DeleteByIdMethod = async () => {
     try {
-      await DeletePost(actions.item.id!);
-      await actions.item.getPostsMethod!();
+      await DeletePost(post.id!);
+      getPostsMethod();
       setOptions(false);
     } catch (error) {
       console.log(error);
@@ -60,6 +58,9 @@ export default function Post(actions: CommentModelActions) {
   return (
     <div className={styles.post_body}>
       <div id="options" className={options ? styles.options : styles.optionsNone}>
+        <div>
+          <b>Editar</b>
+        </div>
         <div>
           <b>Ver Perfil</b>
         </div>
@@ -77,7 +78,7 @@ export default function Post(actions: CommentModelActions) {
             width: "100%",
           }}
         >
-          <div>{actions.item.user}</div>
+          <div>{post.user}</div>
           <p style={{ color: "#b1b2ba31", display: "flex" }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -109,11 +110,19 @@ export default function Post(actions: CommentModelActions) {
         </div>
       </div>
       <div style={{ marginTop: "10px" }}>
-        <p>{actions.item.description}</p>
+        <p>{post.description}</p>
       </div>
+
+      {comments.length > 0 ?
+        comments.map((item: { description: string }, i: number) => (
+          <div key={i} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+            <div className={styles.photo_comment}></div>
+            <div>{item.description}</div>
+          </div>)) : <></>}
+
       <div style={{ display: "flex" }}>
         <div className={styles.photo_comment}></div>
-        <input type="text" onChange={onChangeMethod} value={inputValue} name="description" placeholder="Comentario" />
+        <input type="text" onChange={onChangeMethod} value={description} name="description" placeholder="Comentario" />
         <button onClick={createPostMethod}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
