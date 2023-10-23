@@ -59,10 +59,10 @@ export default function Post({ getPostsMethod, post, comments }: CommentModelAct
     <div className={styles.post_body}>
       <div id="options" className={options ? styles.options : styles.optionsNone}>
         <div>
-          <b>Editar</b>
+          Ver Perfil
         </div>
         <div>
-          <b>Ver Perfil</b>
+          Editar
         </div>
         <div style={{ color: "red" }} onClick={DeleteByIdMethod}>
           <b>Eliminar</b>

@@ -19,6 +19,32 @@
   width: 5%;
 }
 
+.logo_profile{
+  width: 50px;
+  height: 50px;
+  border: solid 2px var(--default-background);
+  border-radius: 50%;
+}
+
+.optionsNone{
+  display: none;
+}
+
+.options{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 100;
+  right: 145px;
+  top: 70px;
+  width: 180px;
+  border-radius: 5px;
+  background-color: var(--default-background);
+  border: 1px solid #535458;
+  padding: 10px;
+  color: white;
+}
+
 .title {
   font-size: 25px;
   font-weight: 800;
@@ -28,13 +54,7 @@
 }
 
 .items_navbar {
-  width: 30%;
-  display: flex;
-  justify-content: space-around;
-  color: white;
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
+  width: 40%;
 }
 
 .items_navbar div {
@@ -94,9 +114,9 @@
     flex-direction: row;
   }
 
-  .items_navbar {
+  /* .items_navbar {
     display: none;
-  }
+  } */
 
   .body_navbar div button {
     margin: 0px 6px;

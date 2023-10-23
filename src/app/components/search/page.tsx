@@ -1,4 +1,4 @@
-import Navbar from "../components/navbar/navbar";
+import Navbar from "../navbar/navbar";
 import Dashboard from "./components/search";
 
 export const metadata = {

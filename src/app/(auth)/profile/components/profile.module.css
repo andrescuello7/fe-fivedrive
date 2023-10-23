@@ -12,19 +12,58 @@
   min-height: 90vh;
 }
 
+.profile {
+  /* background: url(https://e1.pxfuel.com/desktop-wallpaper/576/539/desktop-wallpaper-planning.jpg); */
+  background-repeat: no-repeat;
+  background: var(--default-background-L1);
+  background-size: cover;
+  background-attachment: local;
+  background-position-x: center;
+  height: 30rem;
+  width: 100%;
+  border-bottom: 1px solid var(--default-background);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.profilePhoto {
+  background: var(--default-background);
+  border: 5px solid var(--default-background);
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  margin-bottom: 40px;
+  margin-left: 30px;
+}
+
+.profileFullname{
+  height: 110px;
+  font-size: 2.3rem;
+  font-family: var(--default-font);
+  font-weight: 700;
+  margin-left: 20px;
+  color: rgb(233, 225, 225);
+}
+
 .bar {
+  width: 20%;
+}
+
+.anuncie {
   width: 20%;
 }
 
 .body {
   padding: 0% 5%;
-  padding-top: 100px;
-  width: 80%;
+  padding-top: 50px;
+  width: 60%;
   min-height: 100%;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   border-left: 1px solid var(--default-background);
+  border-right: 1px solid var(--default-background);
   background-color: transparent;
   color: white;
 }
@@ -59,24 +98,38 @@
   padding-left: 10px;
 }
 
-.posts{
+.posts {
   min-height: 100%;
   display: flex;
   flex-direction: column-reverse;
 }
 
 
-@media(max-width:768px){
-  .anuncie{
+@media(max-width:768px) {
+  .anuncie {
     display: none;
   }
-  .bar{
+
+  .bar {
     display: none;
   }
+
   .body {
     width: 100%;
   }
+
   .body_home {
     padding: 0px 0px;
+  }
+  .profile {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+  }
+  .profilePhoto {
+    border-radius: 50%;
+    margin-bottom: 0px;
+    margin-left: 0px;
   }
 }

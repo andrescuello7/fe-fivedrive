@@ -38,7 +38,7 @@ export async function updateUsers(data: UserModel, id: number) {
   if (!response.ok) {
     throw new Error("Error");
   }
-  const auth: any = await response.json();
+  const auth = await response.json();
   return auth;
 }
 
@@ -55,6 +55,6 @@ export async function deleteUsers(id: number) {
   if (!response.ok) {
     throw new Error("Error");
   }
-  const auth: any = await response.json();
+  const auth = await response.json();
   return auth;
 }
