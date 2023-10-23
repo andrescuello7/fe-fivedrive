@@ -11,7 +11,7 @@ import { CreatePost, FindAllPosts } from "services/posts.service";
 import { ChangeEvent, useEffect, useState } from "react";
 import { UseMicrosoft } from "../../../../hooks/useMicrosoft";
 
-export const Dashboard = () => {
+export default function Dashboard() {
   const [posts, setposts] = useState([]);
   const [postModel, setPostModel] = useState<PostModel>();
   const { RefreshToken } = UseMicrosoft();
