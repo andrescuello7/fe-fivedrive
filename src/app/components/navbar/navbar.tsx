@@ -48,16 +48,13 @@ export default function Navbar() {
       </div>
       <div id="options" className={options ? styles.options : styles.optionsNone}>
         <Link href={`profile`}>
-            <b style={{ color: "white" }}>Profile</b>
-        </Link>
-        <Link href={`about`}>
-            <b style={{ color: "white" }}>About</b>
+            <b style={{ color: "white" }}>Perfil</b>
         </Link>
         <Link href={``}>
             <b style={{ color: "white" }}>Configuraciones</b>
         </Link>
         <Link href={`login`}>
-            <b style={{ color: "red" }}>Log Out</b>
+            <b style={{ color: "red" }}>Cerrar Sesion</b>
         </Link>
       </div>
     </>
