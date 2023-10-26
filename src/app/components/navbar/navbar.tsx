@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import Link from "next/link";
@@ -7,9 +6,11 @@ import { useEffect, useState } from "react";
 import { readFromLocalStorage, removeLocalStorage } from "@/utils/localStorage";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
 import { useRouter } from "next/navigation";
+import { Image } from "antd";
 
 export default function Navbar() {
   const [options, setOptions] = useState(false);
+  const [token, setToken] = useState();
   const router = useRouter()
 
   useEffect(() => {
@@ -23,6 +24,11 @@ export default function Navbar() {
       document.removeEventListener("mousedown", handleDocumentClick);
     };
   }, [options]);
+
+  useEffect(() => {
+    const authBearer = readFromLocalStorage(ContentTypeEnum.Token);
+    setToken(authBearer);
+  }, [])
 
   const RemoveSession = () => {
     removeLocalStorage(ContentTypeEnum.Token)
@@ -39,7 +45,7 @@ export default function Navbar() {
         </div>
         <div className={styles.items_navbar}>
         </div>
-        {!readFromLocalStorage(ContentTypeEnum.Token) ? <div className={styles.logo_navbar}>
+        {!token ? <div className={styles.logo_navbar}>
           <Link href={`login`}>
             <button className={styles.buttonLogin}>Iniciar</button>
           </Link>
@@ -49,7 +55,7 @@ export default function Navbar() {
         </div>
           :
           <div className={styles.logo_profile} onClick={() => setOptions(!options)}>
-            <img style={{ borderRadius: "50%", height: "46px"  }} src="https://storage.prompt-hunt.workers.dev/clhjx3gkw000pmg08c1b7wsii_1" alt="" />
+            <Image preview={false} style={{ borderRadius: "50%", height: "46px"  }} src="https://storage.prompt-hunt.workers.dev/clhjx3gkw000pmg08c1b7wsii_1" alt="" />
           </div>}
       </div>
       <div id="options" className={options ? styles.options : styles.optionsNone}>

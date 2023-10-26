@@ -1,4 +1,8 @@
+import { readFromLocalStorage } from "@/utils/localStorage";
+import { ContentTypeEnum } from "enums/ContentTypeEnum";
 import PostModel from "model/PostModel";
+
+const token = readFromLocalStorage(ContentTypeEnum.Token)
 
 export async function FindAllPosts() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts`, {
@@ -54,6 +58,7 @@ export async function DeletePost(id: number) {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
     }
   );
