@@ -4,14 +4,15 @@
 import Link from "next/link";
 import styles from "./navbar.module.css";
 import { useEffect, useState } from "react";
-import { Image } from "antd";
+import { readFromLocalStorage, removeLocalStorage } from "@/utils/localStorage";
+import { ContentTypeEnum } from "enums/ContentTypeEnum";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [options, setOptions] = useState(false);
+  const router = useRouter()
 
   useEffect(() => {
-    console.log({ options });
-
     const handleDocumentClick = (e: any) => {
       if (options && !e.target.closest("#options")) {
         setOptions(false);
@@ -23,6 +24,11 @@ export default function Navbar() {
     };
   }, [options]);
 
+  const RemoveSession = () => {
+    removeLocalStorage(ContentTypeEnum.Token)
+    router.push('/login')
+  }
+
   return (
     <>
       <div className={styles.body_navbar}>
@@ -33,7 +39,7 @@ export default function Navbar() {
         </div>
         <div className={styles.items_navbar}>
         </div>
-        {false ? <div className={styles.logo_navbar}>
+        {!readFromLocalStorage(ContentTypeEnum.Token) ? <div className={styles.logo_navbar}>
           <Link href={`login`}>
             <button className={styles.buttonLogin}>Iniciar</button>
           </Link>
@@ -43,7 +49,7 @@ export default function Navbar() {
         </div>
           :
           <div className={styles.logo_profile} onClick={() => setOptions(!options)}>
-            <img style={{ borderRadius: "50%", height: "50px"  }} src="https://storage.prompt-hunt.workers.dev/clhjx3gkw000pmg08c1b7wsii_1" alt="" />
+            <img style={{ borderRadius: "50%", height: "46px"  }} src="https://storage.prompt-hunt.workers.dev/clhjx3gkw000pmg08c1b7wsii_1" alt="" />
           </div>}
       </div>
       <div id="options" className={options ? styles.options : styles.optionsNone}>
@@ -53,7 +59,7 @@ export default function Navbar() {
         <Link href={``}>
             <b style={{ color: "white" }}>Configuraciones</b>
         </Link>
-        <Link href={`login`}>
+        <Link href={`login`} onClick={RemoveSession}>
             <b style={{ color: "red" }}>Cerrar Sesion</b>
         </Link>
       </div>

@@ -1,5 +1,5 @@
 export default class UserModel {
-  fullname: string | undefined;
+  username: string | undefined;
   password: string | undefined;
   email: string | undefined;
   repeetPassword: string | undefined;

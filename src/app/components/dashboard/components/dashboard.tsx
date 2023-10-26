@@ -19,7 +19,6 @@ export default function Dashboard() {
   const createPostMethod = async () => {
     try {
     // TODO i18n: Refresh Token
-    
     //  const response = await RefreshToken();
     //  console.log({response});
      

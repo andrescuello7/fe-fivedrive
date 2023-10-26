@@ -1,9 +1,9 @@
 export default class AuthModel {
-  email?: string;
-  password?: string;
+  username: string | undefined;
+  password: string | undefined;
   
-  getEmail(){
-    return this.email;
+  getUsername(){
+    return this.username;
   }
   getPassword(){
     return this.password;

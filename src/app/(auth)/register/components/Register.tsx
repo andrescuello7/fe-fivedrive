@@ -11,7 +11,7 @@ const Register = () => {
 
   const CreateUserMethod = async () => {
     try {
-      if (userModel?.password !== userModel?.repeetPassword ) {
+      if (userModel?.password !== userModel?.repeetPassword && userModel?.username !== null && userModel?.email !== null) {
         throw new Error("Error creating user");
       }
       const response = await createUsers(userModel!);
@@ -38,8 +38,8 @@ const Register = () => {
         <label>Usuario</label>
         <input
           onChange={(e) => onChangeMethod(e)}
-          placeholder="johnSmith"
-          name="fullname"
+          placeholder="John_Smith"
+          name="username"
           type="text"
           className={styles.textField}
         />
