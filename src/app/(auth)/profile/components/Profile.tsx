@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FindAllPosts } from "services/comments.service";
+import { FindAllPosts } from "services/posts.service";
 import { ICommentModel } from "interfaces/ICommentModel";
 import { IPosts } from "interfaces/IPostModel";
 import Post from "@/app/components/posts/post";

@@ -1,18 +1,8 @@
+import { readFromLocalStorage } from "@/utils/localStorage";
+import { ContentTypeEnum } from "enums/ContentTypeEnum";
 import CommentModel from "model/CommentModel";
 
-export async function FindAllPosts() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!response.ok) {
-    throw new Error("Error");
-  }
-  const users = await response.json();
-  return users;
-}
+const token = readFromLocalStorage(ContentTypeEnum.Token)
 
 export async function CreateComment(comment: CommentModel, id: number) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}comment/${id}`, {
@@ -20,6 +10,7 @@ export async function CreateComment(comment: CommentModel, id: number) {
     body: JSON.stringify(comment),
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     },
   });
   if (!response.ok) {
@@ -36,6 +27,7 @@ export async function FindForPostId(id: number) {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
     }
   );
@@ -53,6 +45,7 @@ export async function FindById(id: number) {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
     }
   );

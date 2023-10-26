@@ -5,8 +5,6 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { DeletePost } from "services/posts.service";
 import CommentModel from "model/CommentModel";
 import { ICommentModel } from "interfaces/ICommentModel";
-import { ContentTypeEnum } from "enums/ContentTypeEnum";
-import { readFromLocalStorage } from "@/utils/localStorage";
 
 interface CommentModelActions {
   post: IPosts;

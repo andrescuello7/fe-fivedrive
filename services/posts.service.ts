@@ -24,6 +24,7 @@ export async function CreatePost(post: PostModel) {
     body: JSON.stringify(post),
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     },
   });
   if (!response.ok) {
