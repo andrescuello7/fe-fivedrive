@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import Link from "next/link";
@@ -7,9 +8,15 @@ import { readFromLocalStorage, removeLocalStorage } from "@/utils/localStorage";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
 import { useRouter } from "next/navigation";
 import { Image } from "antd";
+import { UserFactory } from "../../../../singleton/userFactory";
+import { photoDefault } from "@/values/constantDefault";
+
 
 export default function Navbar() {
+  const userFactory: UserFactory = UserFactory.Initial();
+
   const [options, setOptions] = useState(false);
+  const [photo, setPhoto] = useState(photoDefault);
   const [token, setToken] = useState();
   const router = useRouter()
 
@@ -27,11 +34,24 @@ export default function Navbar() {
 
   useEffect(() => {
     const authBearer = readFromLocalStorage(ContentTypeEnum.Token);
+    const userJsonBuffer = readFromLocalStorage(ContentTypeEnum.User);
+
+    if (userJsonBuffer && authBearer) {
+      const buffer = atob(userJsonBuffer);
+      const user = JSON.parse(buffer);
+      if (userFactory.getUserModel().photo) {
+        setPhoto(userFactory.getUserModel().photo!);
+      } else if (user.photo) {
+        setPhoto(user.photo);
+      }
+    }
+
     setToken(authBearer);
   }, [])
 
   const RemoveSession = () => {
     removeLocalStorage(ContentTypeEnum.Token)
+    removeLocalStorage(ContentTypeEnum.User)
     router.push('/login')
   }
 
@@ -45,28 +65,30 @@ export default function Navbar() {
         </div>
         <div className={styles.items_navbar}>
         </div>
-        {!token ? <div className={styles.logo_navbar}>
-          <Link href={`login`}>
-            <button className={styles.buttonLogin}>Iniciar</button>
-          </Link>
-          <Link href={`register`}>
-            <button className={styles.buttonRegister}>Registrarme</button>
-          </Link>
-        </div>
+        {!token ?
+          <div className={styles.logo_navbar}>
+            <Link href={`login`}>
+              <button className={styles.buttonLogin}>Iniciar</button>
+            </Link>
+            <Link href={`register`}>
+              <button className={styles.buttonRegister}>Registrarme</button>
+            </Link>
+          </div>
           :
           <div className={styles.logo_profile} onClick={() => setOptions(!options)}>
-            <Image preview={false} style={{ borderRadius: "50%", height: "46px"  }} src="https://storage.prompt-hunt.workers.dev/clhjx3gkw000pmg08c1b7wsii_1" alt="" />
-          </div>}
+            <Image preview={false} style={{ borderRadius: "50%", height: "46px" }} src={photo} alt="" />
+          </div>
+        }
       </div>
       <div id="options" className={options ? styles.options : styles.optionsNone}>
         <Link href={`profile`}>
-            <b style={{ color: "white" }}>Perfil</b>
+          <b style={{ color: "white" }}>Perfil</b>
         </Link>
         <Link href={``}>
-            <b style={{ color: "white" }}>Configuraciones</b>
+          <b style={{ color: "white" }}>Configuraciones</b>
         </Link>
         <Link href={`login`} onClick={RemoveSession}>
-            <b style={{ color: "red" }}>Cerrar Sesion</b>
+          <b style={{ color: "red" }}>Cerrar Sesion</b>
         </Link>
       </div>
     </>

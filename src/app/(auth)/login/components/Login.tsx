@@ -1,22 +1,32 @@
 "use client";
-import { Authentication } from "services/auth.service";
+import { Authentication, GetAuthentication } from "services/auth.service";
 import styles from "./login.module.css";
 import { ChangeEvent, useState } from "react";
 import AuthModel from "model/AuthModel";
 import { useRouter } from "next/navigation";
 import { saveToLocalStorage } from "@/utils/localStorage";
 import Link from "next/link";
+import { ContentTypeEnum } from "enums/ContentTypeEnum";
+import UserModel from "model/UserModel";
+import { UserFactory } from "../../../../../singleton/userFactory";
 
 const Login = () => {
   const [authModel, setAuthModel] = useState<AuthModel>();
   const router = useRouter()
 
+  // Login Method auth
   const AuthenticationMethod = async () => {
+    const userFactory: UserFactory = UserFactory.Initial();
+
     try {
       const { token } = await Authentication(authModel!);
       if (token) {
         const auth = token.replace('Bearer ', '');
-        saveToLocalStorage({ key: 'x-auth-token', value: auth })
+        const authUser: UserModel = await GetAuthentication(auth);
+
+        userFactory.setUserModel(authUser);
+        saveToLocalStorage({ key: ContentTypeEnum.Token, value: auth })
+
         router.push('/')
       }
     } catch (error) {
@@ -24,6 +34,7 @@ const Login = () => {
     }
   };
 
+  // Onchange form validation of inputs
   const onChangeMethod = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setAuthModel((prevAuthModel: any) => ({
