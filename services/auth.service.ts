@@ -14,7 +14,7 @@ export async function FindAllUsers() {
 }
 
 export async function Authentication(model: AuthModel) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/api/auth`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/auth`, {
     method: "POST",
     body: JSON.stringify(model),
     headers: {
