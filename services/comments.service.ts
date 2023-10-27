@@ -5,7 +5,7 @@ import CommentModel from "model/CommentModel";
 const token = readFromLocalStorage(ContentTypeEnum.Token)
 
 export async function CreateComment(comment: CommentModel, id: number) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}comment/${id}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/comment/${id}`, {
     method: "POST",
     body: JSON.stringify(comment),
     headers: {
@@ -22,7 +22,7 @@ export async function CreateComment(comment: CommentModel, id: number) {
 
 export async function FindForPostId(id: number) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}comment/post/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}api/comment/post/${id}`,
     {
       method: "GET",
       headers: {
@@ -40,7 +40,7 @@ export async function FindForPostId(id: number) {
 
 export async function FindById(id: number) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}comment/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}api/comment/${id}`,
     {
       method: "GET",
       headers: {

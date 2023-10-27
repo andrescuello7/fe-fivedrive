@@ -5,7 +5,7 @@ import PostModel from "model/PostModel";
 const token = readFromLocalStorage(ContentTypeEnum.Token)
 
 export async function FindAllPosts() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}posts`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/posts`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export async function FindAllPosts() {
 }
 
 export async function CreatePost(post: PostModel) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}post`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/post`, {
     method: "POST",
     body: JSON.stringify(post),
     headers: {
@@ -36,7 +36,7 @@ export async function CreatePost(post: PostModel) {
 
 export async function UpdatePost(post: PostModel, id: number) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}posts/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}api/posts/${id}`,
     {
       method: "PUT",
       body: JSON.stringify(post),
@@ -54,7 +54,7 @@ export async function UpdatePost(post: PostModel, id: number) {
 
 export async function DeletePost(id: number) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}post/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}api/post/${id}`,
     {
       method: "DELETE",
       headers: {

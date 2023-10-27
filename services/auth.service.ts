@@ -5,7 +5,7 @@ import AuthModel from "model/AuthModel";
 const token = readFromLocalStorage(ContentTypeEnum.Token)
 
 export async function FindAllUsers() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/users`);
   if (!response.ok) {
     throw new Error("Error");
   }
@@ -14,7 +14,7 @@ export async function FindAllUsers() {
 }
 
 export async function Authentication(model: AuthModel) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}auth`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/api/auth`, {
     method: "POST",
     body: JSON.stringify(model),
     headers: {
@@ -29,7 +29,7 @@ export async function Authentication(model: AuthModel) {
 }
 
 export async function GetAuthentication(tokenAuth: string) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}user/auth`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/user/auth`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

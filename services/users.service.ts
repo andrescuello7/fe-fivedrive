@@ -1,7 +1,7 @@
 import UserModel from "model/UserModel";
 
 export async function getUsers() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/users`);
   if (!response.ok) {
     throw new Error("Error");
   }
@@ -10,7 +10,7 @@ export async function getUsers() {
 }
 
 export async function createUsers(user: UserModel) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}users`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/users`, {
     method: "POST",
     body: JSON.stringify(user),
     headers: {
@@ -26,7 +26,7 @@ export async function createUsers(user: UserModel) {
 
 export async function updateUsers(data: UserModel, id: number) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}users/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}api/users/${id}`,
     {
       method: "PUT",
       body: JSON.stringify(data),
@@ -44,7 +44,7 @@ export async function updateUsers(data: UserModel, id: number) {
 
 export async function deleteUsers(id: number) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}users/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}api/users/${id}`,
     {
       method: "DELETE",
       headers: {
