@@ -21,6 +21,7 @@ import Link from "next/link";
 export default function Dashboard() {
   const userFactory: UserFactory = UserFactory.Initial();
   const userJsonBuffer = readFromLocalStorage(ContentTypeEnum.User);
+  const tokenAuth = readFromLocalStorage(ContentTypeEnum.Token);
 
   const [posts, setposts] = useState([]);
   const [user, setuser] = useState<UserModel>();
@@ -71,7 +72,11 @@ export default function Dashboard() {
   return (
     <>
       <div className={styles.body_home}>
-        <ItemBar photo={user?.photo ?? photoDefault} />
+        {tokenAuth ?
+          <ItemBar photo={user?.photo ?? photoDefault} />
+          :
+          <div className={styles.bar}></div>
+        }
         <div className={styles.body}>
           <FormPost
             createPostMethod={createPostMethod}
