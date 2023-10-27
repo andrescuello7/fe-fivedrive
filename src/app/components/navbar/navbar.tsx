@@ -81,10 +81,10 @@ export default function Navbar() {
         }
       </div>
       <div id="options" className={options ? styles.options : styles.optionsNone}>
-        <Link href={`profile`}>
+        <Link style={{ marginBottom: "5px" }} href={`profile`}>
           <b style={{ color: "white" }}>Perfil</b>
         </Link>
-        <Link href={``}>
+        <Link style={{ marginBottom: "5px" }} href={``}>
           <b style={{ color: "white" }}>Configuraciones</b>
         </Link>
         <Link href={`login`} onClick={RemoveSession}>

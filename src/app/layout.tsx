@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata = {
   title: {
-    default: "Firedrive",
+    default: "firedrive",
     template: "%s | Firedrive",
   },
 };

@@ -1,13 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+import { UserFactory } from "singleton/userFactory";
 import styles from "./form.module.css";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { readFromLocalStorage } from "@/utils/localStorage";
+import { ContentTypeEnum } from "enums/ContentTypeEnum";
+import UserModel from "model/UserModel";
+import { Image } from "antd";
+import { photoDefault } from "@/values/constantDefault";
 
-interface PostModelActions{
+interface PostModelActions {
   onChangeMethod: (e: ChangeEvent<HTMLInputElement>) => void;
   createPostMethod: () => void;
 }
 
-export default function FormPost({createPostMethod, onChangeMethod}:PostModelActions) {
+export default function FormPost({ createPostMethod, onChangeMethod }: PostModelActions) {
+  const userFactory: UserFactory = UserFactory.Initial();
+  const userJsonBuffer = readFromLocalStorage(ContentTypeEnum.User);
+
+  const [user, setuser] = useState<UserModel>();
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,11 +31,28 @@ export default function FormPost({createPostMethod, onChangeMethod}:PostModelAct
     setInputValue("");
   };
 
+  useEffect(() => {
+    if (userFactory.getUserModel()) {
+      setuser(userFactory.getUserModel())
+    }
+
+    if (userJsonBuffer) {
+      const buffer = atob(userJsonBuffer);
+      const user = JSON.parse(buffer);
+
+      if (userFactory.getUserModel().photo) {
+        setuser(userFactory.getUserModel());
+      } else if (user) {
+        setuser(user);
+      }
+    }
+  }, []);
+
   return (
     <>
       <div className={styles.form_post}>
         <div style={{ display: "flex" }}>
-          <div className={styles.photo}></div>
+          <Image preview={true} alt="" src={user?.photo ?? photoDefault} className={styles.photo} />
           <input onChange={e => handleInputChange(e)} value={inputValue} name="description" type="text" placeholder="Que estas pensando?" />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
