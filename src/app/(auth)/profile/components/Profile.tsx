@@ -33,7 +33,7 @@ export default function Profile() {
     if (userJsonBuffer) {
       const buffer = atob(userJsonBuffer);
       const user = JSON.parse(buffer);
-      
+
       if (userFactory.getUserModel().photo) {
         setuser(userFactory.getUserModel());
       } else if (user) {
@@ -46,7 +46,12 @@ export default function Profile() {
   return (
     <>
       <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-        <div className={styles.profile}>
+        <div className={styles.profile}
+          style={user?.cover ?
+            { background: `url(${user?.cover})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }
+            :
+            { background: "rgb(26, 27, 32)" }
+          }>
           <div className={styles.profilePhoto}>
             <Image alt="" style={{ borderRadius: "50%" }} src={user?.photo ?? photoDefault} />
           </div>

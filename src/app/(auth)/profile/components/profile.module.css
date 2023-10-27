@@ -13,13 +13,11 @@
 }
 
 .profile {
-  /* background: url(https://e1.pxfuel.com/desktop-wallpaper/576/539/desktop-wallpaper-planning.jpg); */
   background-repeat: no-repeat;
-  background: var(--default-background-L1);
   background-size: cover;
   background-attachment: local;
   background-position-x: center;
-  height: 30rem;
+  height: 35rem;
   width: 100%;
   border-bottom: 1px solid var(--default-background);
   display: flex;
@@ -37,7 +35,7 @@
   margin-left: 30px;
 }
 
-.profileFullname{
+.profileFullname {
   height: 110px;
   font-size: 2.3rem;
   font-family: var(--default-font);
@@ -121,12 +119,14 @@
   .body_home {
     padding: 0px 0px;
   }
+
   .profile {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     flex-direction: column;
   }
+
   .profilePhoto {
     border-radius: 50%;
     margin-bottom: 0px;

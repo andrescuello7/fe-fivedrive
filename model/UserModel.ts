@@ -3,6 +3,7 @@ export default class UserModel {
   public username: string | undefined;
   public password: string | undefined;
   public photo: string | undefined;
+  public cover: string | undefined;
   public email: string | undefined;
   public repeetPassword: string | undefined;
 }
