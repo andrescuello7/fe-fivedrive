@@ -2,8 +2,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FindAllPosts } from "services/posts.service";
-import { ICommentModel } from "interfaces/ICommentModel";
 import { IPosts } from "interfaces/IPostModel";
 import Post from "@/app/components/posts/post";
 import styles from "./profile.module.css";
@@ -13,34 +11,25 @@ import UserModel from "model/UserModel";
 import { photoDefault } from "@/values/constantDefault";
 import { readFromLocalStorage } from "@/utils/localStorage";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
+import { GetAuthentication } from "services/auth.service";
 
 export default function Profile() {
-  const userJsonBuffer = readFromLocalStorage(ContentTypeEnum.User);
+  const tokenAuth = readFromLocalStorage(ContentTypeEnum.Token);
   const userFactory: UserFactory = UserFactory.Initial();
-  const [posts, setposts] = useState([]);
   const [user, setuser] = useState<UserModel>();
+  const [posts, setposts] = useState([]);
 
-  const getPostsMethod = async () => {
-    const response = await FindAllPosts();
-    setposts(response);
+  const getUserMethod = async () => {
+    const user = await GetAuthentication(tokenAuth);
+    setuser(user);
+    setposts(user.posts ?? []);
   };
 
   useEffect(() => {
     if (userFactory.getUserModel()) {
       setuser(userFactory.getUserModel())
     }
-
-    if (userJsonBuffer) {
-      const buffer = atob(userJsonBuffer);
-      const user = JSON.parse(buffer);
-
-      if (userFactory.getUserModel().photo) {
-        setuser(userFactory.getUserModel());
-      } else if (user) {
-        setuser(user);
-      }
-    }
-    getPostsMethod();
+    getUserMethod();
   }, []);
 
   return (
@@ -61,13 +50,14 @@ export default function Profile() {
           <div className={styles.bar}></div>
           <div className={styles.body}>
             <div className={styles.posts}>
-              {posts.map((item: { post: IPosts }, index: number) => (
-                <Post
-                  key={index}
-                  post={item.post}
-                  getPostsMethod={getPostsMethod}
-                />
-              ))}
+              {posts.length > 0 ?
+                posts.map((item: IPosts, index: number) => (
+                  <Post
+                    key={index}
+                    post={item}
+                    getPostsMethod={getUserMethod}
+                  />
+                )) : <></>}
             </div>
           </div>
           <div className={styles.anuncie}></div>

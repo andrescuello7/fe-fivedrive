@@ -16,11 +16,12 @@ import UserModel from "model/UserModel";
 import { readFromLocalStorage } from "@/utils/localStorage";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
 import Link from "next/link";
+import { GetAuthentication } from "services/auth.service";
 
 export default function Dashboard() {
   const userFactory: UserFactory = UserFactory.Initial();
   const userJsonBuffer = readFromLocalStorage(ContentTypeEnum.User);
-  const tokenAuth = readFromLocalStorage(ContentTypeEnum.Token) ?? null;
+  const tokenAuth = readFromLocalStorage(ContentTypeEnum.Token);
 
   const [posts, setposts] = useState([]);
   const [user, setuser] = useState<UserModel>();
@@ -39,30 +40,21 @@ export default function Dashboard() {
     const { name, value } = e.target;
     setPostModel((form: any) => ({
       ...form,
+      user: { id: user?.id },
       [name]: value,
     }));
   };
 
   const getPostsMethod = async () => {
-    const response = await FindAllPosts();
-    setposts(response);
+    const posts = await FindAllPosts();
+    setposts(posts);
+    if (tokenAuth) {
+      const user = await GetAuthentication(tokenAuth);
+      setuser(user);
+    }
   };
 
   useEffect(() => {
-    if (userFactory.getUserModel()) {
-      setuser(userFactory.getUserModel())
-    }
-
-    if (userJsonBuffer) {
-      const buffer = atob(userJsonBuffer);
-      const user = JSON.parse(buffer);
-
-      if (userFactory.getUserModel().photo) {
-        setuser(userFactory.getUserModel());
-      } else if (user) {
-        setuser(user);
-      }
-    }
     getPostsMethod();
   }, []);
 
@@ -70,7 +62,7 @@ export default function Dashboard() {
   return (
     <>
       <div className={styles.body_home}>
-        {tokenAuth ? <ItemBar photo={user?.photo ?? photoDefault} /> : <div className={styles.bar}></div>}
+        {tokenAuth && userJsonBuffer ? <ItemBar photo={user?.photo ?? photoDefault} /> : <div className={styles.bar}></div>}
         <div className={styles.body}>
           <FormPost
             createPostMethod={createPostMethod}

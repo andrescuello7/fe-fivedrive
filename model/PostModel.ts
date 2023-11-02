@@ -1,9 +1,9 @@
 export default class PostModel {
   id?: number;
-  user?: string;
   title?: string;
   description?: string;
   photo?: string;
+  user?: { id: number };
 
   getId() {
     return this.id;
@@ -19,5 +19,8 @@ export default class PostModel {
   }
   getPhoto() {
     return this.photo;
+  }
+  setUser(id: number) {
+    this.user = { id };
   }
 }

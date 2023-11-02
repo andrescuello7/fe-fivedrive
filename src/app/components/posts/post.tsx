@@ -4,7 +4,6 @@ import { CreateComment } from "services/comments.service";
 import { ChangeEvent, useEffect, useState } from "react";
 import { DeletePost } from "services/posts.service";
 import CommentModel from "model/CommentModel";
-import { ICommentModel } from "interfaces/ICommentModel";
 
 interface CommentModelActions {
   post: IPosts;
