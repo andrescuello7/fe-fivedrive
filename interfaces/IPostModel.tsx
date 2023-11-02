@@ -1,9 +1,10 @@
+import { ICommentModel } from "./ICommentModel";
+
 export interface IPosts {
   id?: number;
-  user?: string;
-  title?: string;
   description?: string;
   photo?: string;
+  comments: ICommentModel[] | [];
 
   getPostsMethod?: () => void;
 }

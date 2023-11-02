@@ -4,8 +4,8 @@ import CommentModel from "model/CommentModel";
 
 const token = readFromLocalStorage(ContentTypeEnum.Token)
 
-export async function CreateComment(comment: CommentModel, id: number) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/comment/${id}`, {
+export async function CreateComment(comment: CommentModel) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/comment`, {
     method: "POST",
     body: JSON.stringify(comment),
     headers: {

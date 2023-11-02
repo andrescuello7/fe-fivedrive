@@ -7,7 +7,6 @@ import FormPost from "../../form/form";
 import PostModel from "model/PostModel";
 
 import { IPosts } from "interfaces/IPostModel";
-import { ICommentModel } from "interfaces/ICommentModel";
 import { CreatePost, FindAllPosts } from "services/posts.service";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Image } from "antd";
@@ -21,7 +20,7 @@ import Link from "next/link";
 export default function Dashboard() {
   const userFactory: UserFactory = UserFactory.Initial();
   const userJsonBuffer = readFromLocalStorage(ContentTypeEnum.User);
-  const tokenAuth = readFromLocalStorage(ContentTypeEnum.Token);
+  const tokenAuth = readFromLocalStorage(ContentTypeEnum.Token) ?? null;
 
   const [posts, setposts] = useState([]);
   const [user, setuser] = useState<UserModel>();
@@ -68,15 +67,10 @@ export default function Dashboard() {
   }, []);
 
 
-
   return (
     <>
       <div className={styles.body_home}>
-        {tokenAuth ?
-          <ItemBar photo={user?.photo ?? photoDefault} />
-          :
-          <div className={styles.bar}></div>
-        }
+        {tokenAuth ? <ItemBar photo={user?.photo ?? photoDefault} /> : <div className={styles.bar}></div>}
         <div className={styles.body}>
           <FormPost
             createPostMethod={createPostMethod}
@@ -84,11 +78,10 @@ export default function Dashboard() {
           />
           <br />
           <div className={styles.posts}>
-            {posts.map((item: { post: IPosts, comments: ICommentModel[] }, index: number) => (
+            {posts.map((item: IPosts, index: number) => (
               <Post
                 key={index}
-                post={item.post}
-                comments={item.comments}
+                post={item}
                 getPostsMethod={getPostsMethod}
               />
             ))}
@@ -142,7 +135,7 @@ const ItemBar = ({ photo }: { photo: string }) => {
       </Link>
       <Link href={'/'} className={styles.barItem}>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className={`${styles.barItemIcon} bi bi-sliders`} viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
+          <path fillRule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
         </svg>
         <label className={styles.barItemLabel}>
           Configuracion

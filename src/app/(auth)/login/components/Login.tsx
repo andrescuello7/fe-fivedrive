@@ -22,9 +22,15 @@ const Login = () => {
       const { token } = await Authentication(authModel!);
       if (token) {
         const auth = token.replace('Bearer ', '');
-        const authUser: UserModel = await GetAuthentication(auth);
+        const { cover, email, id, photo, username }: UserModel = await GetAuthentication(auth);
 
-        userFactory.setUserModel(authUser);
+        userFactory.setUserModel({
+          cover,
+          email,
+          id,
+          photo,
+          username
+        });
         saveToLocalStorage({ key: ContentTypeEnum.Token, value: auth })
 
         router.push('/')

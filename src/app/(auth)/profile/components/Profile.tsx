@@ -61,11 +61,10 @@ export default function Profile() {
           <div className={styles.bar}></div>
           <div className={styles.body}>
             <div className={styles.posts}>
-              {posts.map((item: { post: IPosts, comments: ICommentModel[] }, index: number) => (
+              {posts.map((item: { post: IPosts }, index: number) => (
                 <Post
                   key={index}
                   post={item.post}
-                  comments={item.comments}
                   getPostsMethod={getPostsMethod}
                 />
               ))}

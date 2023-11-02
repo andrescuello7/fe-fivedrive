@@ -8,11 +8,10 @@ import { ICommentModel } from "interfaces/ICommentModel";
 
 interface CommentModelActions {
   post: IPosts;
-  comments: ICommentModel[];
   getPostsMethod: () => void;
 }
 
-export default function Post({ getPostsMethod, post, comments }: CommentModelActions) {
+export default function Post({ getPostsMethod, post }: CommentModelActions) {
   const [options, setOptions] = useState(false);
   const [description, setDescription] = useState("");
 
@@ -20,7 +19,8 @@ export default function Post({ getPostsMethod, post, comments }: CommentModelAct
     try {
       const commentModel = new CommentModel()
       commentModel.setDescription(description);
-      await CreateComment(commentModel, post.id!);
+      commentModel.setPostId(post.id!);
+      await CreateComment(commentModel);
       getPostsMethod();
       setDescription("")
     } catch (error) {
@@ -78,7 +78,7 @@ export default function Post({ getPostsMethod, post, comments }: CommentModelAct
             width: "100%",
           }}
         >
-          <div>{post.user}</div>
+          <div>{post?.id ?? ""}</div>
           <p style={{ color: "#b1b2ba31", display: "flex" }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -113,8 +113,8 @@ export default function Post({ getPostsMethod, post, comments }: CommentModelAct
         <p>{post.description}</p>
       </div>
 
-      {comments.length > 0 ?
-        comments.map((item: { description: string }, i: number) => (
+      {post.comments.length > 0 ?
+        post.comments.map((item: { description: string }, i: number) => (
           <div key={i} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
             <div className={styles.photo_comment}></div>
             <div>{item.description}</div>
