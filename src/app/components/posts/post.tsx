@@ -4,6 +4,7 @@ import { CreateComment } from "services/comments.service";
 import { ChangeEvent, useEffect, useState } from "react";
 import { DeletePost } from "services/posts.service";
 import CommentModel from "model/CommentModel";
+import { Image } from "antd";
 
 interface CommentModelActions {
   post: IPosts;
@@ -54,6 +55,17 @@ export default function Post({ getPostsMethod, post }: CommentModelActions) {
     }
   };
 
+  const getDate = (date: Date) => {
+    let dateAt = new Date(date)
+    const newDate = dateAt.toLocaleDateString('es-ES', {
+      month:"long",
+      day: "numeric",
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+    return newDate;
+  }
+
   return (
     <div className={styles.post_body}>
       <div id="options" className={options ? styles.options : styles.optionsNone}>
@@ -68,7 +80,9 @@ export default function Post({ getPostsMethod, post }: CommentModelActions) {
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div className={styles.photo_user}></div>
+        <div className={styles.photo_user}>
+          <Image preview={false} style={{ borderRadius: "50%", height: "40px", width: "40px" }} src={post.photoAuthor} alt="" />
+        </div>
         <div
           style={{
             display: "flex",
@@ -77,7 +91,7 @@ export default function Post({ getPostsMethod, post }: CommentModelActions) {
             width: "100%",
           }}
         >
-          <div>{post?.id ?? ""}</div>
+          <div>{post?.username ?? ""}</div>
           <p style={{ color: "#b1b2ba31", display: "flex" }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +105,7 @@ export default function Post({ getPostsMethod, post }: CommentModelActions) {
               <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z" />
               <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z" />
             </svg>
-            <i>12 minutes</i>
+            <i>{getDate(post.createAt!).toString()}</i>
           </p>
         </div>
         <div style={{ marginTop: "10px" }} onClick={() => setOptions(!options)}>
@@ -113,14 +127,18 @@ export default function Post({ getPostsMethod, post }: CommentModelActions) {
       </div>
 
       {post.comments.length > 0 ?
-        post.comments.map((item: { description: string }, i: number) => (
+        post.comments.map((item: { description: string, photoAuthor: string }, i: number) => (
           <div key={i} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-            <div className={styles.photo_comment}></div>
+            <div className={styles.photo_comment}>
+              <Image preview={false} style={{ borderRadius: "50%", height: "30px" }} src={item.photoAuthor} alt="" />
+            </div>
             <div>{item.description}</div>
           </div>)) : <></>}
 
       <div style={{ display: "flex" }}>
-        <div className={styles.photo_comment}></div>
+        <div className={styles.photo_comment}>
+              <Image preview={false} style={{ borderRadius: "50%", height: "35px", width: "35px" }} src={post.photoAuthor} alt="" />
+        </div>
         <input type="text" onChange={onChangeMethod} value={description} name="description" placeholder="Comentario" />
         <button onClick={createPostMethod}>
           <svg
