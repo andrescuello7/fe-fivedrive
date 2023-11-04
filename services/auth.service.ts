@@ -1,8 +1,4 @@
-import { readFromLocalStorage } from "@/utils/localStorage";
-import { ContentTypeEnum } from "enums/ContentTypeEnum";
 import AuthModel from "model/AuthModel";
-
-const token = readFromLocalStorage(ContentTypeEnum.Token)
 
 export async function FindAllUsers() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/users`);

@@ -11,7 +11,6 @@ import { CreatePost, FindAllPosts } from "services/posts.service";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Image } from "antd";
 import { photoDefault } from "@/values/constantDefault";
-import { UserFactory } from "singleton/userFactory";
 import UserModel from "model/UserModel";
 import { readFromLocalStorage } from "@/utils/localStorage";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
@@ -19,17 +18,16 @@ import Link from "next/link";
 import { GetAuthentication } from "services/auth.service";
 
 export default function Dashboard() {
-  const userFactory: UserFactory = UserFactory.Initial();
   const userJsonBuffer = readFromLocalStorage(ContentTypeEnum.User);
   const tokenAuth = readFromLocalStorage(ContentTypeEnum.Token);
 
   const [posts, setposts] = useState([]);
   const [user, setuser] = useState<UserModel>();
-  const [postModel, setPostModel] = useState<PostModel>();
+  const postModel = new PostModel();
 
   const createPostMethod = async () => {
     try {
-      await CreatePost(postModel!);
+      await CreatePost(postModel);
       await getPostsMethod();
     } catch (error) {
       console.error(error);
@@ -37,12 +35,10 @@ export default function Dashboard() {
   };
 
   const onChangeMethod = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setPostModel((form: any) => ({
-      ...form,
-      user: { id: user?.id },
-      [name]: value,
-    }));
+    const { value } = e.target;
+    postModel.setDescription(value);
+    postModel.setCreateAt();
+    postModel.setUser(user?.id!)
   };
 
   const getPostsMethod = async () => {
@@ -67,6 +63,7 @@ export default function Dashboard() {
           <FormPost
             createPostMethod={createPostMethod}
             onChangeMethod={onChangeMethod}
+            postModel={postModel}
           />
           <br />
           <div className={styles.posts}>
@@ -74,6 +71,7 @@ export default function Dashboard() {
               <Post
                 key={index}
                 post={item}
+                user={user!}
                 getPostsMethod={getPostsMethod}
               />
             ))}

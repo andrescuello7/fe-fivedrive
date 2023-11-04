@@ -1,4 +1,8 @@
+import { readFromLocalStorage } from "@/utils/localStorage";
+import { ContentTypeEnum } from "enums/ContentTypeEnum";
 import UserModel from "model/UserModel";
+
+const token = readFromLocalStorage(ContentTypeEnum.Token)
 
 export async function getUsers() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/users`);
@@ -14,7 +18,7 @@ export async function createUsers(user: UserModel) {
     method: "POST",
     body: JSON.stringify(user),
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
   });
   if (!response.ok) {
@@ -24,14 +28,13 @@ export async function createUsers(user: UserModel) {
   return auth;
 }
 
-export async function updateUsers(data: UserModel, id: number) {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}api/users/${id}`,
-    {
+export async function updateUsers(data: UserModel) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/user`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
     }
   );
