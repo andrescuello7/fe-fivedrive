@@ -27,6 +27,7 @@ const Register = () => {
     const { name, value } = e.target;
     setUserModel((prevAuthModel: any) => ({
       ...prevAuthModel,
+      id: 0,
       [name]: value,
     }));
   };
