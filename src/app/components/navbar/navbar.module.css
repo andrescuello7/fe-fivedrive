@@ -109,14 +109,24 @@
     z-index: 1;
     position: fixed;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     flex-direction: row;
   }
 
-  /* .items_navbar {
-    display: none;
-  } */
+  .title {
+    width: 10px;
+  }
+
+  .options{
+    position: absolute;
+    z-index: 100;
+    right: 20px;
+    top: 70px;
+    width: 180px;
+    border-radius: 5px;
+    background-color: var(--default-background);
+  }
 
   .body_navbar div button {
     margin: 0px 6px;

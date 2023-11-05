@@ -1,17 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { UserFactory } from "singleton/userFactory";
 import styles from "./form.module.css";
-import { ChangeEvent, useEffect, useState } from "react";
-import { readFromLocalStorage } from "@/utils/localStorage";
-import { ContentTypeEnum } from "enums/ContentTypeEnum";
-import UserModel from "model/UserModel";
-import { Image } from "antd";
+import { ChangeEvent } from "react";
+import { Image, Button } from "antd";
 import { photoDefault } from "@/values/constantDefault";
-import UploadMethod from "@/utils/upload";
-import axios from "axios";
 import PostModel from "model/PostModel";
+import FormController from "./formController";
 
 interface PostModelActions {
   onChangeMethod: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -21,44 +16,15 @@ interface PostModelActions {
 }
 
 export default function FormPost({ createPostMethod, onChangeMethod, postModel }: PostModelActions) {
-  const userFactory: UserFactory = UserFactory.Initial();
-  const userJsonBuffer = readFromLocalStorage(ContentTypeEnum.User);
-
-  const [user, setuser] = useState<UserModel>();
-  const [inputValue, setInputValue] = useState("");
-  const { UploadSend } = UploadMethod();
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    onChangeMethod(e);
-  };
-
-  const handleUploadClick = () => {
-    createPostMethod();
-    setInputValue("");
-  };
-
-  const uploadImage = async (e: any) => {
-    const res = await UploadSend(e);
-    postModel.setPhoto(res);
-  };
-
-  useEffect(() => {
-    if (userFactory.getUserModel()) {
-      setuser(userFactory.getUserModel())
-    }
-
-    if (userJsonBuffer) {
-      const buffer = atob(userJsonBuffer);
-      const user = JSON.parse(buffer);
-
-      if (userFactory.getUserModel().photo) {
-        setuser(userFactory.getUserModel());
-      } else if (user) {
-        setuser(user);
-      }
-    }
-  }, []);
+  const {
+    enable,
+    loading,
+    handleInputChange,
+    handleUploadClick,
+    inputValue,
+    uploadImage,
+    user
+  } = FormController({ createPostMethod, onChangeMethod, postModel })
 
   return (
     <>
@@ -108,8 +74,10 @@ export default function FormPost({ createPostMethod, onChangeMethod, postModel }
               </label>
             </div>
           </div>
-          <div className={styles.buttons}>
-            <button onClick={handleUploadClick}>Subir</button>
+          <div className={styles.buttons} >
+            <Button
+              loading={loading}
+              onClick={handleUploadClick}>Subir</Button>
           </div>
         </div>
       </div >

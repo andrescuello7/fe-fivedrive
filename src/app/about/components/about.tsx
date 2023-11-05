@@ -13,8 +13,7 @@ export default function AboutUs() {
         </div>
         <div className={styles.description}>
           <div>
-            It's my platform. You can make posts and comment on posts from your
-            friends and users, Update at another time...
+            Welcome to <b>Firedrive</b> This is an online directory where you can communicate and post messages between your acquaintances in the community
           </div>
         </div>
         <div>

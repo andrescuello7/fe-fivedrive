@@ -91,15 +91,13 @@ export default function Post(params: CommentModelparams) {
       <div style={{ marginTop: "10px" }}>
         <p>{post.description}</p>
       </div>
-      {post.photo !== null ?
-        <div style={{ marginBottom: "10px" }}>
+      {post.photo ?
+        <div style={{ marginBottom: "20px" }}>
           <Image style={{ borderRadius: "1%", height: "100%" }} src={post.photo} alt="" />
-        </div>
-        : <></>
-      }
+        </div> : <></>}
       {post.comments.length > 0 ?
         post.comments.map((item: { description: string, photoAuthor: string }, i: number) => (
-          <div key={i} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+          <div key={i} style={{ display: "flex", alignItems: "center" }}>
             <div className={styles.photo_comment}>
               <Image preview={false} style={{ borderRadius: "50%", height: "30px" }} src={item.photoAuthor ?? photoDefault} alt="" />
             </div>
@@ -108,9 +106,9 @@ export default function Post(params: CommentModelparams) {
         : <></>
       }
 
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", marginTop: "10px" }}>
         <div className={styles.photo_comment}>
-          <Image preview={false} style={{ borderRadius: "50%", height: "35px", width: "35px" }} src={post.photoAuthor ?? photoDefault} alt="" />
+          <Image preview={false} style={{ borderRadius: "50%", height: "35px", width: "35px" }} src={user?.photo ?? photoDefault} alt="" />
         </div>
         <input type="text" onChange={onChangeMethod} value={description} name="description" placeholder="Comentario" />
         <button onClick={createCommentMethod}>
