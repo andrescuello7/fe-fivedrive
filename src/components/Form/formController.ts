@@ -2,8 +2,8 @@
 import { readFromLocalStorage } from "@/utils/localStorage";
 import UploadMethod from "@/utils/upload";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
-import PostModel from "model/PostModel";
-import UserModel from "model/UserModel";
+import PostModel from "@/model/PostModel";
+import UserModel from "@/model/UserModel";
 import { ChangeEvent, useEffect, useState } from "react";
 import { UserFactory } from "singleton/userFactory";
 

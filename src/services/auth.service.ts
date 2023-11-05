@@ -1,4 +1,4 @@
-import AuthModel from "model/AuthModel";
+import AuthModel from "@/model/AuthModel";
 
 export async function FindAllUsers() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/users`);

@@ -1,4 +1,4 @@
-import Navbar from "@/app/components/navbar/navbar";
+import Navbar from "@/components/Navbar/navbar";
 import Register from "./components/Register";
 
 export const metadata = {

@@ -8,8 +8,8 @@ import { readFromLocalStorage, removeLocalStorage } from "@/utils/localStorage";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
 import { useRouter } from "next/navigation";
 import { Image } from "antd";
-import { UserFactory } from "../../../../singleton/userFactory";
-import { photoDefault } from "@/values/constantDefault";
+import { UserFactory } from "../../../singleton/userFactory";
+import { photoDefault } from "@/values/images";
 
 
 export default function Navbar() {

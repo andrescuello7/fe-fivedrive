@@ -3,17 +3,17 @@
 
 import { useEffect, useState } from "react";
 import { IPosts } from "interfaces/IPostModel";
-import Post from "@/app/components/posts/post";
+import Post from "@/components/Posts/post";
 import styles from "./profile.module.css";
 import { Image } from "antd";
 import { UserFactory } from "../../../../../singleton/userFactory";
-import UserModel from "model/UserModel";
-import { photoDefault } from "@/values/constantDefault";
+import UserModel from "@/model/UserModel";
+import { photoDefault } from "@/values/images";
 import { readFromLocalStorage } from "@/utils/localStorage";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
-import { GetAuthentication } from "services/auth.service";
+import { GetAuthentication } from "@/services/auth.service";
 import UploadMethod from "@/utils/upload";
-import { updateUsers } from "services/users.service";
+import { updateUsers } from "@/services/users.service";
 
 export default function Profile() {
   const tokenAuth = readFromLocalStorage(ContentTypeEnum.Token);

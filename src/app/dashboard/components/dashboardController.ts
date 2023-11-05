@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import UserModel from "model/UserModel";
-import PostModel from "model/PostModel";
-import { CreatePost, FindAllPosts } from "services/posts.service";
+import UserModel from "@/model/UserModel";
+import PostModel from "@/model/PostModel";
+import { CreatePost, FindAllPosts } from "@/services/posts.service";
 import { ChangeEvent, useEffect, useState } from "react";
 import { readFromLocalStorage } from "@/utils/localStorage";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
-import { GetAuthentication } from "services/auth.service";
+import { GetAuthentication } from "@/services/auth.service";
 
 export default function DashboardController(){
     const userJsonBuffer = readFromLocalStorage(ContentTypeEnum.User);

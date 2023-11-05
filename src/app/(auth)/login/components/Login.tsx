@@ -1,13 +1,13 @@
 "use client";
-import { Authentication, GetAuthentication } from "services/auth.service";
+import { Authentication, GetAuthentication } from "@/services/auth.service";
 import styles from "./login.module.css";
 import { ChangeEvent, useState } from "react";
-import AuthModel from "model/AuthModel";
+import AuthModel from "@/model/AuthModel";
 import { useRouter } from "next/navigation";
 import { saveToLocalStorage } from "@/utils/localStorage";
 import Link from "next/link";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
-import UserModel from "model/UserModel";
+import UserModel from "@/model/UserModel";
 import { UserFactory } from "../../../../../singleton/userFactory";
 
 const Login = () => {

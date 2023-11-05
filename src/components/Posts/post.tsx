@@ -4,8 +4,8 @@ import { IPosts } from "interfaces/IPostModel";
 import styles from "./post.module.css";
 import PostController from "./postController";
 import { Image } from "antd";
-import { photoDefault } from "@/values/constantDefault";
-import UserModel from "model/UserModel";
+import { photoDefault } from "@/values/images";
+import UserModel from "@/model/UserModel";
 
 interface CommentModelparams {
   post: IPosts;

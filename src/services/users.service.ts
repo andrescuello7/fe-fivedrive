@@ -1,6 +1,6 @@
 import { readFromLocalStorage } from "@/utils/localStorage";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
-import UserModel from "model/UserModel";
+import UserModel from "@/model/UserModel";
 
 const token = readFromLocalStorage(ContentTypeEnum.Token)
 

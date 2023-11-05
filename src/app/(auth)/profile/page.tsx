@@ -1,4 +1,4 @@
-import Navbar from "@/app/components/navbar/navbar";
+import Navbar from "@/components/Navbar/navbar";
 import Profile from "./components/Profile";
 
 export const metadata = {

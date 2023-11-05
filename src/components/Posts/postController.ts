@@ -1,9 +1,9 @@
 import { IPosts } from "interfaces/IPostModel";
-import CommentModel from "model/CommentModel";
-import UserModel from "model/UserModel";
+import CommentModel from "@/model/CommentModel";
+import UserModel from "@/model/UserModel";
 import { ChangeEvent, useEffect, useState } from "react";
-import { CreateComment } from "services/comments.service";
-import { DeletePost } from "services/posts.service";
+import { CreateComment } from "@/services/comments.service";
+import { DeletePost } from "@/services/posts.service";
 
 interface CommentModelActions {
     post: IPosts;

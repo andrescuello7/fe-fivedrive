@@ -4,8 +4,8 @@
 import styles from "./form.module.css";
 import { ChangeEvent } from "react";
 import { Image, Button } from "antd";
-import { photoDefault } from "@/values/constantDefault";
-import PostModel from "model/PostModel";
+import { photoDefault } from "@/values/images";
+import PostModel from "@/model/PostModel";
 import FormController from "./formController";
 
 interface PostModelActions {

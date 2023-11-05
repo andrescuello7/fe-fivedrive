@@ -1,9 +1,9 @@
 "use client";
 import { ChangeEvent, useState } from "react";
 import styles from "./register.module.css";
-import UserModel from "model/UserModel";
+import UserModel from "@/model/UserModel";
 import { useRouter } from "next/navigation";
-import { createUsers } from "services/users.service";
+import { createUsers } from "@/services/users.service";
 
 const Register = () => {
   const router = useRouter();

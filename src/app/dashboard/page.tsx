@@ -1,14 +1,14 @@
 "use client";
 
-import Post from "@/app/components/posts/post";
-import styles from "./dashboard.module.css";
-import FormPost from "../../form/form";
+import Post from "@/components/Posts/post";
+import styles from "./components/dashboard.module.css";
+import FormPost from "../../components/Form/form";
 
 import { IPosts } from "interfaces/IPostModel";
 import { Image } from "antd";
-import { photoDefault } from "@/values/constantDefault";
+import { photoDefault } from "@/values/images";
 import Link from "next/link";
-import DashboardController from "./dashboardController";
+import DashboardController from "./components/dashboardController";
 
 export default function Dashboard() {
   const {
