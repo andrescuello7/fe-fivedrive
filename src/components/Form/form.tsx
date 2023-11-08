@@ -30,7 +30,7 @@ export default function FormPost({ createPostMethod, onChangeMethod, postModel }
     <>
       <div className={styles.form_post}>
         <div style={{ display: "flex" }}>
-          <Image preview={true} alt="" src={user?.photo ?? photoDefault} className={styles.photo} />
+          <Image preview={false} alt="" src={user?.photo ?? photoDefault} className={styles.photo} />
           <input onChange={e => handleInputChange(e)} value={inputValue} name="description" type="text" placeholder="Que estas pensando?" />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>

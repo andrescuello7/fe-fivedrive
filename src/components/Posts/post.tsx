@@ -15,8 +15,11 @@ interface CommentModelparams {
 
 export default function Post(params: CommentModelparams) {
   const {
+    edit,
     post,
     user,
+    setedit,
+    saveEdit,
     options,
     setOptions,
     description,
@@ -32,10 +35,11 @@ export default function Post(params: CommentModelparams) {
         <div>
           Ver Perfil
         </div>
-        <div>
+        <div onClick={() => setedit(true)}>
           Editar
         </div>
-        <div style={{ color: "red" }} onClick={DeleteByIdMethod}>
+        <div style={{ color: "red" }}
+          onClick={DeleteByIdMethod}>
           <b>Eliminar</b>
         </div>
       </div>
@@ -89,12 +93,15 @@ export default function Post(params: CommentModelparams) {
         </>
       </div>
       <div style={{ marginTop: "10px" }}>
-        <p>{post.description}</p>
+        {edit ?
+          <textarea className={styles.edit} name="description" onChange={onChangeMethod} value={post.description} />
+          : <p>{post.description}</p>}
       </div>
       {post.photo ?
         <div style={{ marginBottom: "20px" }}>
-          <Image style={{ borderRadius: "1%", height: "100%" }} src={post.photo} alt="" />
+          <Image style={{ borderRadius: "10px", height: "100%" }} src={post.photo} alt="" />
         </div> : <></>}
+      {edit ? <div onClick={saveEdit} className={styles.saveButton}>Save</div> : <div></div>}
       {post.comments.length > 0 ?
         post.comments.map((item: { description: string, photoAuthor: string }, i: number) => (
           <div key={i} style={{ display: "flex", alignItems: "center" }}>

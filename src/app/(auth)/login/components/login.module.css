@@ -16,14 +16,23 @@
 .form{
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 40%;
 }
 .form input{
   height: 50px;
   padding: 0px 20px;
   margin-bottom: 15px;
   background-color: #2a2b2e;
+  border-radius: 5px;
   border: none;
+}
+
+.form input:-webkit-autofill,
+.form input:-webkit-autofill:hover,
+.form input:-webkit-autofill:focus,
+.form input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    color: white !important;
 }
 
 .form input:hover{

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
 import UserModel from "@/model/UserModel";
 import { UserFactory } from "../../../../../singleton/userFactory";
+import { Input } from "antd";
 
 const Login = () => {
   const [authModel, setAuthModel] = useState<AuthModel>();
@@ -64,7 +65,7 @@ const Login = () => {
         <p>Contraseña</p>
         <input
           onChange={(e) => onChangeMethod(e)}
-          placeholder="Contrasena"
+          placeholder="Contraseña"
           name="password"
           type="password"
           className={styles.textField}
@@ -72,7 +73,7 @@ const Login = () => {
         <button onClick={AuthenticationMethod}>Iniciar Sesion</button>
         <div>
           <br />
-          <Link href={""}>Olvidé mi contraseña</Link>
+          <Link href={""}>Olvidaste tu contraseña?</Link>
         </div>
       </div>
     </div>

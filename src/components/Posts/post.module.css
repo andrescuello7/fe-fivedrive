@@ -1,6 +1,6 @@
 .post_body {
   position: relative;
-  padding: 15px;
+  padding: 20px;
   margin-bottom: 20px;
   width: 100%;
   min-height: 130px;
@@ -81,4 +81,28 @@
   background-color: var(--default-background);
   border: 1px solid #535458;
   padding: 10px;
+}
+
+.edit{
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  color: white;
+}
+
+.saveButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  border-radius: 5px;
+  color: white;
+  background-color: var(--default-background-LGO);
+  height: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  transition: 600ms;
+}
+.saveButton:hover {
+  background-color: var(--default-background-LG);
 }

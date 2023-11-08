@@ -17,7 +17,7 @@
 .form{
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 40%;
 }
 .form input{
   height: 50px;
@@ -48,6 +48,14 @@
 }
 .textField{
   margin-top: 8px;
+}
+
+.form input:-webkit-autofill,
+.form input:-webkit-autofill:hover,
+.form input:-webkit-autofill:focus,
+.form input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    color: white !important;
 }
 
 .form button:hover {

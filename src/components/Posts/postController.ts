@@ -3,7 +3,8 @@ import CommentModel from "@/model/CommentModel";
 import UserModel from "@/model/UserModel";
 import { ChangeEvent, useEffect, useState } from "react";
 import { CreateComment } from "@/services/comments.service";
-import { DeletePost } from "@/services/posts.service";
+import { DeletePost, UpdatePost } from "@/services/posts.service";
+import PostModel from "@/model/PostModel";
 
 interface CommentModelActions {
     post: IPosts;
@@ -13,6 +14,7 @@ interface CommentModelActions {
 
 export default function PostController({ getPostsMethod, post, user }: CommentModelActions){
     const [options, setOptions] = useState(false);
+    const [edit, setedit] = useState(false);
     const [description, setDescription] = useState("");
   
     const createCommentMethod = async () => {
@@ -28,22 +30,39 @@ export default function PostController({ getPostsMethod, post, user }: CommentMo
       }
     };
   
-    const onChangeMethod = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeMethod = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
       const { value } = e.target;
+      console.log(e);
+      
       setDescription(value)
     };
+
+    const saveEdit = async () => {
+      const postModel = new PostModel();
+      postModel.setId(post.id);
+      postModel.setDescription("Hola mundo");
+      await UpdatePost(postModel);
+      getPostsMethod();
+      // setDescription("")
+      setedit(false);
+    }
   
     useEffect(() => {
+      if (edit && options) {
+        setedit(true);
+        setOptions(false);
+      }
       const handleDocumentClick = (e: any) => {
         if (options && !e.target.closest("#options")) {
           setOptions(false);
+          setedit(false);
         }
       };
       document.addEventListener("mousedown", handleDocumentClick);
       return () => {
         document.removeEventListener("mousedown", handleDocumentClick);
       };
-    }, [options]);
+    }, [options, edit]);
   
     const DeleteByIdMethod = async () => {
       try {
@@ -66,8 +85,11 @@ export default function PostController({ getPostsMethod, post, user }: CommentMo
       return newDate;
     }
     return {
+        edit,
         post, 
         user,
+        setedit,
+        saveEdit,
         options,
         setOptions,
         description,

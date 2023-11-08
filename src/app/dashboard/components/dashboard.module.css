@@ -5,7 +5,7 @@
   color: white;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   overflow-y: scroll;
   min-height: 90vh;
@@ -13,7 +13,7 @@
 
 
 .body {
-  padding: 0% 5%;
+  padding: 0% 12%;
   padding-top: 100px;
   width: 60%;
   min-height: 100%;
@@ -82,16 +82,17 @@
 /* Bar Items */
 
 .anuncie {
-  width: 25%;
+  width: 20%;
 }
 
 .bar {
+  padding-top: 110px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   height: 100%;
-  width: 25%;
+  width: 20%;
 }
 
 .barItemProfile {

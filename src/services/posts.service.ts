@@ -34,14 +34,15 @@ export async function CreatePost(post: PostModel) {
   return result;
 }
 
-export async function UpdatePost(post: PostModel, id: number) {
+export async function UpdatePost(post: PostModel) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}api/posts/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}api/post`,
     {
       method: "PUT",
       body: JSON.stringify(post),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
     }
   );
