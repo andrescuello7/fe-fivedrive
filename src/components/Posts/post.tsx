@@ -1,11 +1,12 @@
 "use client"
 
-import { IPosts } from "interfaces/IPostModel";
 import styles from "./post.module.css";
-import PostController from "./postController";
-import { Image } from "antd";
-import { photoDefault } from "@/values/images";
 import UserModel from "@/model/UserModel";
+import PostController from "./postController";
+
+import { Image } from "antd";
+import { IPosts } from "interfaces/IPostModel";
+import { photoDefault } from "@/values/images";
 
 interface CommentModelparams {
   post: IPosts;
@@ -18,13 +19,15 @@ export default function Post(params: CommentModelparams) {
     edit,
     post,
     user,
+    options,
+    getDate,
+    comment,
     setedit,
     saveEdit,
-    options,
+    setComment,
     setOptions,
     description,
-    getDate,
-    onChangeMethod,
+    setDescription,
     DeleteByIdMethod,
     createCommentMethod,
   } = PostController(params);
@@ -92,32 +95,50 @@ export default function Post(params: CommentModelparams) {
           }
         </>
       </div>
-      <div style={{ marginTop: "10px" }}>
+      <div
+        style={{
+          marginTop: "10px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: `${edit ? "flex-end" : "flex-start"}`
+        }}>
         {edit ?
-          <textarea className={styles.edit} name="description" onChange={onChangeMethod} value={post.description} />
-          : <p>{post.description}</p>}
+          <textarea
+            name="description"
+            className={styles.edit}
+            onChange={e => setDescription(e.target.value)}
+            value={description !== "" ? description : post.description} />
+            :
+          <p>{post.description}</p>
+        }
+        {edit ?
+          <div style={{ display: "flex", justifyContent: "space-around", marginTop: "10px" }}>
+            <div onClick={() => setedit(false)} className={styles.saveButtonCancel}>Cancelar</div>
+            <div onClick={saveEdit} className={styles.saveButton}>Guardar</div>
+          </div>
+          :
+          <div></div>
+        }
       </div>
       {post.photo ?
         <div style={{ marginBottom: "20px" }}>
           <Image style={{ borderRadius: "10px", height: "100%" }} src={post.photo} alt="" />
         </div> : <></>}
-      {edit ? <div onClick={saveEdit} className={styles.saveButton}>Save</div> : <div></div>}
       {post.comments.length > 0 ?
         post.comments.map((item: { description: string, photoAuthor: string }, i: number) => (
-          <div key={i} style={{ display: "flex", alignItems: "center" }}>
+          <div key={i} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
             <div className={styles.photo_comment}>
-              <Image preview={false} style={{ borderRadius: "50%", height: "30px" }} src={item.photoAuthor ?? photoDefault} alt="" />
+              <Image preview={false} style={{ borderRadius: "50%", height: "25px" }} src={item.photoAuthor ?? photoDefault} alt="" />
             </div>
             <div>{item.description}</div>
           </div>))
         : <></>
       }
-
       <div style={{ display: "flex", marginTop: "10px" }}>
         <div className={styles.photo_comment}>
           <Image preview={false} style={{ borderRadius: "50%", height: "35px", width: "35px" }} src={user?.photo ?? photoDefault} alt="" />
         </div>
-        <input type="text" onChange={onChangeMethod} value={description} name="description" placeholder="Comentario" />
+        <input type="text" onChange={e => setComment(e.target.value)} value={comment} name="description" placeholder="Comentario" />
         <button onClick={createCommentMethod}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

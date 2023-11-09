@@ -16,34 +16,33 @@ export default function PostController({ getPostsMethod, post, user }: CommentMo
     const [options, setOptions] = useState(false);
     const [edit, setedit] = useState(false);
     const [description, setDescription] = useState("");
+    const [comment, setComment] = useState("");
   
     const createCommentMethod = async () => {
       try {
         const commentModel = new CommentModel()
-        commentModel.setDescription(description);
+        commentModel.setDescription(comment);
         commentModel.setPostId(post.id!);
         await CreateComment(commentModel);
         getPostsMethod();
-        setDescription("")
+        setComment("")
       } catch (error) {
         console.error(error);
       }
     };
   
     const onChangeMethod = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
-      const { value } = e.target;
-      console.log(e);
-      
+      const { value  } = e.target;
       setDescription(value)
     };
 
     const saveEdit = async () => {
       const postModel = new PostModel();
       postModel.setId(post.id);
-      postModel.setDescription("Hola mundo");
+      postModel.setDescription(description);
+      setDescription("")
       await UpdatePost(postModel);
       getPostsMethod();
-      // setDescription("")
       setedit(false);
     }
   
@@ -88,9 +87,11 @@ export default function PostController({ getPostsMethod, post, user }: CommentMo
         edit,
         post, 
         user,
+        comment,
         setedit,
         saveEdit,
         options,
+        setComment,
         setOptions,
         description,
         setDescription,

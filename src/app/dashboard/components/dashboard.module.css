@@ -140,6 +140,7 @@
     display: none;
   }
   .body {
+    padding: 100px 2%;
     width: 100%;
   }
   .body_home {
