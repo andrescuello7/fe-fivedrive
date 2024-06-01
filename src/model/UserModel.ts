@@ -8,5 +8,4 @@ export default class UserModel {
   public cover: string | undefined;
   public email: string | undefined;
   public password?: string | undefined;
-  public repeetPassword?: string | undefined;
 }

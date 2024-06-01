@@ -8,10 +8,11 @@ import { createUsers } from "@/services/users.service";
 const Register = () => {
   const router = useRouter();
   const [userModel, setUserModel] = useState<UserModel>();
+  const [repeetPassword, setRepeetPassword] = useState('');
 
   const CreateUserMethod = async () => {
     try {
-      if (userModel?.password !== userModel?.repeetPassword && userModel?.username !== null && userModel?.email !== null) {
+      if (userModel?.password !== repeetPassword && userModel?.username !== null && userModel?.email !== null) {
         throw new Error("Error creating user");
       }
       const response = await createUsers(userModel!);
@@ -25,11 +26,14 @@ const Register = () => {
 
   const onChangeMethod = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUserModel((prevAuthModel: any) => ({
-      ...prevAuthModel,
-      id: 0,
-      [name]: value,
-    }));
+    if (name !== 'repeetPassword') {
+      setUserModel((prevAuthModel: any) => ({
+        ...prevAuthModel,
+        id: 0,
+        [name]: value,
+      }));
+    } 
+    setRepeetPassword(value)
   };
 
   return (

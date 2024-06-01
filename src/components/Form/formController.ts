@@ -22,6 +22,7 @@ export default function FormController({ createPostMethod, onChangeMethod, postM
     const [inputValue, setInputValue] = useState("");
     const [loading, setloading] = useState(false);
     const [enable, setenable] = useState(true);
+    const [openAi, setOpenAi] = useState(false);
     const { UploadSend } = UploadMethod();
   
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -62,8 +63,10 @@ export default function FormController({ createPostMethod, onChangeMethod, postM
     }, []);
     return {
         user,
+        openAi,
         enable,
         loading,
+        setOpenAi,
         inputValue,
         handleInputChange,
         handleUploadClick,
