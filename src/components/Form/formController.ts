@@ -6,13 +6,19 @@ import PostModel from "@/model/PostModel";
 import UserModel from "@/model/UserModel";
 import { ChangeEvent, useEffect, useState } from "react";
 import { UserFactory } from "singleton/userFactory";
+import { CreateImageOpenAI } from "@/services/posts.service";
 
 interface PostModelActions {
     onChangeMethod: (e: ChangeEvent<HTMLInputElement>) => void;
     createPostMethod: () => void;
     postModel: PostModel;
-  
-  }
+}
+enum OpenAiState {
+  "STOP"= 0,
+  "START"= 1,
+  "SUCCESS"= 2,
+  "FAIL"= 3,
+}
 
 export default function FormController({ createPostMethod, onChangeMethod, postModel }: PostModelActions) {
     const userFactory: UserFactory = UserFactory.Initial();
@@ -22,7 +28,7 @@ export default function FormController({ createPostMethod, onChangeMethod, postM
     const [inputValue, setInputValue] = useState("");
     const [loading, setloading] = useState(false);
     const [enable, setenable] = useState(true);
-    const [openAi, setOpenAi] = useState(false);
+    const [openAi, setOpenAi] = useState(OpenAiState.STOP);
     const { UploadSend } = UploadMethod();
   
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +49,13 @@ export default function FormController({ createPostMethod, onChangeMethod, postM
       const res = await UploadSend(e);
       postModel.setPhoto(res);
       setloading(false);
+    };
+
+    const generateImageOpenAI = async () => {
+        setOpenAi(OpenAiState.START);
+        const { response } = await CreateImageOpenAI(inputValue)
+        postModel.setPhoto(response);
+        setOpenAi(OpenAiState.STOP);
     };
   
     useEffect(() => {
@@ -70,6 +83,8 @@ export default function FormController({ createPostMethod, onChangeMethod, postM
         inputValue,
         handleInputChange,
         handleUploadClick,
-        uploadImage
+        generateImageOpenAI,
+        uploadImage,
+        OpenAiState
     };
 }

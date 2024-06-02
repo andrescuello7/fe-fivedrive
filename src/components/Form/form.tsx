@@ -12,16 +12,16 @@ interface PostModelActions {
   onChangeMethod: (e: ChangeEvent<HTMLInputElement>) => void;
   createPostMethod: () => void;
   postModel: PostModel;
-
 }
 
 export default function FormPost({ createPostMethod, onChangeMethod, postModel }: PostModelActions) {
   const {
     openAi,
     loading,
-    setOpenAi,
+    OpenAiState,
     handleInputChange,
     handleUploadClick,
+    generateImageOpenAI,
     inputValue,
     uploadImage,
     user
@@ -74,12 +74,16 @@ export default function FormPost({ createPostMethod, onChangeMethod, postModel }
                     </svg>
                   </label>
                   <div style={{ width: "10px", height: "10px" }}></div>
-                  {!openAi ?
-                    <svg xmlns="http://www.w3.org/2000/svg" onClick={() => setOpenAi(true)} width="20" height="20" fill="currentColor" className="bi bi-cpu" viewBox="0 0 16 16">
+                  {openAi === OpenAiState.STOP ?
+                    <svg xmlns="http://www.w3.org/2000/svg" onClick={() => {
+                      if(inputValue != ""){
+                        generateImageOpenAI()
+                      }
+                    }} width="20" height="20" fill="currentColor" className="bi bi-cpu" viewBox="0 0 16 16">
                       <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
                     </svg>
                     :
-                    <svg xmlns="http://www.w3.org/2000/svg" onClick={() => setOpenAi(false)} width="20" height="20" fill="currentColor" className="bi bi-cpu-fill" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" onClick={() => generateImageOpenAI()} width="20" height="20" fill="currentColor" className="bi bi-cpu-fill" viewBox="0 0 16 16">
                       <path d="M6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
                       <path d="M5.5.5a.5.5 0 0 0-1 0V2A2.5 2.5 0 0 0 2 4.5H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2A2.5 2.5 0 0 0 4.5 14v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14a2.5 2.5 0 0 0 2.5-2.5h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14A2.5 2.5 0 0 0 11.5 2V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1zm1 4.5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3A1.5 1.5 0 0 1 6.5 5" />
                     </svg>
@@ -91,7 +95,11 @@ export default function FormPost({ createPostMethod, onChangeMethod, postModel }
           <div className={styles.buttons} >
             <Button
               loading={loading}
-              onClick={handleUploadClick}>Subir</Button>
+              onClick={() => {
+                if (openAi !== OpenAiState.START) {
+                  handleUploadClick()
+                }
+              }}>{openAi === OpenAiState.START ? 'Imagen...' : 'Subir'}</Button>
           </div>
         </div>
       </div >
