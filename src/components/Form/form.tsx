@@ -99,7 +99,7 @@ export default function FormPost({ createPostMethod, onChangeMethod, postModel }
                 if (openAi !== OpenAiState.START) {
                   handleUploadClick()
                 }
-              }}>{openAi === OpenAiState.START ? 'Imagen...' : 'Subir'}</Button>
+              }}>{openAi === OpenAiState.START ? 'OpenAI...' : openAi === OpenAiState.FAIL ? 'Error Img' : 'Subir'}</Button>
           </div>
         </div>
       </div >

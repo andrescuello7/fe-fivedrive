@@ -4,13 +4,18 @@ import styles from "./register.module.css";
 import UserModel from "@/model/UserModel";
 import { useRouter } from "next/navigation";
 import { createUsers } from "@/services/users.service";
+import { Button } from "antd";
 
 const Register = () => {
   const router = useRouter();
   const [userModel, setUserModel] = useState<UserModel>();
   const [repeetPassword, setRepeetPassword] = useState('');
+  const [validation, setValidation] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const CreateUserMethod = async () => {
+    setValidation(false)
+    setLoading(true)
     try {
       if (userModel?.password !== repeetPassword && userModel?.username !== null && userModel?.email !== null) {
         throw new Error("Error creating user");
@@ -20,8 +25,10 @@ const Register = () => {
         router.push("/login");
       }
     } catch (error) {
-      console.error(error);
+      console.error({error});
+      setValidation(true)
     }
+    setLoading(false)
   };
 
   const onChangeMethod = (e: ChangeEvent<HTMLInputElement>) => {
@@ -72,7 +79,8 @@ const Register = () => {
           type="password"
           className={styles.textField}
         />
-        <button onClick={CreateUserMethod}>Registrarme</button>
+        {validation ? <div className={styles.errorDanger}>Error, intente nuevamente</div> : <></>}
+        <Button loading={loading} onClick={CreateUserMethod}>Registrarme</Button>
       </div>
     </div>
   );

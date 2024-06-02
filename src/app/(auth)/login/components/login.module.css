@@ -59,6 +59,9 @@
   transition: 1s;
   background-color: var(--default-background-LG);
 }
+.errorDanger{
+  color: rgba(242, 0, 0, 0.696);
+}
 
 @media(max-width: 768px){
   .form{

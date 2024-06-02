@@ -27,11 +27,13 @@ export default function Dashboard() {
       <div className={styles.body_home}>
         {tokenAuth && userJsonBuffer ? <ItemBar photo={user?.photo ?? photoDefault} /> : <div className={styles.bar}></div>}
         <div className={styles.body}>
-          <FormPost
-            createPostMethod={createPostMethod}
-            onChangeMethod={onChangeMethod}
-            postModel={postModel}
-          />
+          {tokenAuth && 
+            <FormPost
+              createPostMethod={createPostMethod}
+              onChangeMethod={onChangeMethod}
+              postModel={postModel}
+            />
+          }
           <br />
           <div className={styles.posts}>
             {posts.map((item: IPosts, index: number) => (

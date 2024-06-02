@@ -52,10 +52,14 @@ export default function FormController({ createPostMethod, onChangeMethod, postM
     };
 
     const generateImageOpenAI = async () => {
+      try {
         setOpenAi(OpenAiState.START);
         const { response } = await CreateImageOpenAI(inputValue)
         postModel.setPhoto(response);
         setOpenAi(OpenAiState.STOP);
+      } catch (error) {
+        setOpenAi(OpenAiState.FAIL);
+      }
     };
   
     useEffect(() => {

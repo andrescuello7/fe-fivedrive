@@ -35,11 +35,12 @@ export async function CreatePost(post: PostModel) {
 }
 
 export async function CreateImageOpenAI(description: string) {
-  const response = await fetch('http://149.50.139.254:8000/api/v1/images', {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_GPT_API_URL}api/v1/image`, {
     method: "POST",
     body: JSON.stringify({ "description": description }),
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     },
   });
   if (!response.ok) {

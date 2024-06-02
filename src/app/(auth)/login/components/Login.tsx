@@ -9,16 +9,19 @@ import Link from "next/link";
 import { ContentTypeEnum } from "enums/ContentTypeEnum";
 import UserModel from "@/model/UserModel";
 import { UserFactory } from "../../../../../singleton/userFactory";
-import { Input } from "antd";
+import { Button } from "antd";
 
 const Login = () => {
   const [authModel, setAuthModel] = useState<AuthModel>();
+  const [validation, setValidation] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter()
 
   // Login Method auth
   const AuthenticationMethod = async () => {
     const userFactory: UserFactory = UserFactory.Initial();
-
+    setValidation(false)
+    setLoading(true)
     try {
       const { token } = await Authentication(authModel!);
       if (token) {
@@ -33,12 +36,13 @@ const Login = () => {
           username
         });
         saveToLocalStorage({ key: ContentTypeEnum.Token, value: auth })
-
         router.push('/')
       }
     } catch (error) {
-      console.error(error);
+      setValidation(true)
+      console.error({error});
     }
+    setLoading(false)
   };
 
   // Onchange form validation of inputs
@@ -70,7 +74,8 @@ const Login = () => {
           type="password"
           className={styles.textField}
         />
-        <button onClick={AuthenticationMethod}>Iniciar Sesion</button>
+        {validation ? <div className={styles.errorDanger}>Error, intente nuevamente</div> : <></>}
+        <Button loading={loading} onClick={AuthenticationMethod}>Iniciar Sesion</Button>
         <div>
           <br />
           <Link href={""}>Olvidaste tu contraseña?</Link>
