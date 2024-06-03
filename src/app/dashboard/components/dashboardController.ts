@@ -18,10 +18,13 @@ export default function DashboardController(){
   
     const createPostMethod = async () => {
       try {
+        if (postModel.getDescription() !== "" || postModel.getUser() !== undefined) {
+          throw new Error("model not found, error in desc or user detected");
+        }
         await CreatePost(postModel);
         await getPostsMethod();
       } catch (error) {
-        console.error(error);
+        console.error({error});
       }
     };
   

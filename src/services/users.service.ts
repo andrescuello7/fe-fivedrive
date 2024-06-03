@@ -16,7 +16,11 @@ export async function getUsers() {
 export async function createUsers(user: UserModel) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/users`, {
     method: "POST",
-    body: JSON.stringify(user),
+    body: JSON.stringify({
+      email: `${user.email}`,
+      username: `${user.username}`,
+      password: `${user.password}`
+    }),
     headers: {
       "Content-Type": "application/json"
     },

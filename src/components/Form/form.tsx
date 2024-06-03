@@ -95,11 +95,9 @@ export default function FormPost({ createPostMethod, onChangeMethod, postModel }
           <div className={styles.buttons} >
             <Button
               loading={loading}
-              onClick={() => {
-                if (openAi !== OpenAiState.START) {
-                  handleUploadClick()
-                }
-              }}>{openAi === OpenAiState.START ? 'OpenAI...' : openAi === OpenAiState.FAIL ? 'Error Img' : 'Subir'}</Button>
+              onClick={() => {openAi !== OpenAiState.START ? handleUploadClick() : () => {}}}>
+                {openAi === OpenAiState.START ? 'OpenAI...' : openAi === OpenAiState.FAIL ? 'Error Img' : 'Subir'}
+              </Button>
           </div>
         </div>
       </div >
